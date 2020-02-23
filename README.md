@@ -48,3 +48,9 @@
   kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run -o yaml
   ```
   * _NOTE_: This will not use the pods labels as selectors
+
+### labels/selectors
+* filter out pods based on labels
+  ```
+  kubectl get pods --selector env=dev
+  ```
