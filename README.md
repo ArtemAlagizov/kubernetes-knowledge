@@ -77,3 +77,27 @@
   ```
   kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule-
   ```
+* **examples**
+  ```
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: mosquito
+  spec:
+    containers:
+    - image: nginx
+      name: mosquitomaster $ cat bee.yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: bee
+  spec:
+    containers:
+    - image: nginx
+      name: bee
+    tolerations:
+    - key: spray
+      value: mortein
+      effect: NoSchedule
+      operator: Equal
+  ```
