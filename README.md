@@ -2,7 +2,9 @@
 
 # cheatsheet
 
-## creation of resources:
+## scheduling
+
+### creation of resources:
 * create an NGINX Pod: 
   ```
   kubectl run --generator=run-pod/v1 nginx --image=nginx
@@ -49,7 +51,7 @@
   ```
   * _NOTE_: This will not use the pods labels as selectors
 
-## labels/selectors
+### labels/selectors
 * filter out pods based on labels
   ```
   kubectl get pods --selector env=dev
@@ -58,5 +60,19 @@
   ```
   kubectl get all --selector env=dev
   ```
-## annotations
-* used for extra meta information
+* label a node 
+  ```
+  kubectl label node node01 color=blue
+  ```
+### annotations
+* used for extra meta information like
+  * integration info like version 
+### taint/tolerations
+* add taint on master, NoSchedule
+  ```
+  kubectl taint nodes master node-role.kubernetes.io/master=all:NoSchedule
+  ```
+* remove the taint on master, which currently has the taint effect of NoSchedule
+  ```
+  kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule-
+  ```
