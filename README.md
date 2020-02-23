@@ -15,6 +15,10 @@
   ```
   kubectl create deployment --image=nginx nginx
   ```
+* scale deployment
+  ```
+  kubectl scale --replicas=3 deployment webapp
+  ```
 * create a deployment file
   ```
   kubectl create deployment --image=nginx nginx --dry-run -o yaml
