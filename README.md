@@ -49,7 +49,7 @@
   ```
   * _NOTE_: This will not use the pods labels as selectors
 
-### labels/selectors
+## labels/selectors
 * filter out pods based on labels
   ```
   kubectl get pods --selector env=dev
@@ -58,3 +58,5 @@
   ```
   kubectl get all --selector env=dev
   ```
+## annotations
+* used for extra meta information
