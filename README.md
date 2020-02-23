@@ -72,6 +72,7 @@
 * add taint on master, NoSchedule
   ```
   kubectl taint nodes master node-role.kubernetes.io/master=all:NoSchedule
+  kubectl taint nodes node01 spray=mortein:NoSchedule
   ```
 * remove the taint on master, which currently has the taint effect of NoSchedule
   ```
@@ -79,14 +80,6 @@
   ```
 * **examples**
   ```
-  apiVersion: v1
-  kind: Pod
-  metadata:
-    name: mosquito
-  spec:
-    containers:
-    - image: nginx
-      name: mosquitomaster $ cat bee.yaml
   apiVersion: v1
   kind: Pod
   metadata:
