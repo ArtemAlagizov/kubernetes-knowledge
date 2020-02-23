@@ -16,6 +16,7 @@
 * create a deployment
   ```
   kubectl create deployment --image=nginx nginx
+  kubectl run blue --image=nginx --replicas=6
   ```
 * scale deployment
   ```
