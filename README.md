@@ -184,3 +184,8 @@
   ```
 ### static pods
     used to create and maintain kubernetes administration plane components
+* get all the static pods:
+  ```
+  kubectl get pods --all-namespaces
+  # all -master appended are static pods
+  ```
