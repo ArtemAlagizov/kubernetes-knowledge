@@ -189,3 +189,7 @@
   kubectl get pods --all-namespaces
   # all with -master appended in the name are static pods, for instance etcd-master
   ```
+* create a static pod named static-busybox that uses the busybox image and the command sleep 1000
+  ```
+  kubectl run --restart=Never --image=busybox static-busybox --dry-run -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+  ```
