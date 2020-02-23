@@ -182,3 +182,5 @@
           hostPath:
             path: /var/lib/docker/containers
   ```
+### static pods
+    used to create and maintain kubernetes administration plane components
