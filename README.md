@@ -104,6 +104,35 @@
     usecases: different teams work on different nodes, and pods need to be separated  respectively, 
     BUT: does not guarantee that extra pods are not scheduled on a desired node, 
     solution => combine it with taints/toleration  
+* set affinity of deployment to a label on a node:
+  ```
+  apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: red
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        run: nginx
+    template:
+      metadata:
+        labels:
+          run: nginx
+      spec:
+        containers:
+        - image: nginx
+          imagePullPolicy: Always
+          name: nginx
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: node-role.kubernetes.io/master
+                  operator: Exists
+  ```
+
 
 ### daemonset => run a pod accross all nodes, usecases: log collection, monitoring
 * example of fluentD logger running on all nodes other than master:
