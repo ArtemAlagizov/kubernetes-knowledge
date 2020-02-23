@@ -69,7 +69,7 @@
 * used for extra meta information like
   * integration info like version 
 ### taint/tolerations 
-    filter out which pods can be scheduled on a node, 
+    description: filter out which pods can be scheduled on a node, 
     usecases: different teams work on different nodes, and pods need to be separated respectively, 
     BUT: does not guarantee that desired pod ends up on a desired node, 
     solution => combine it with node affinity
@@ -100,7 +100,7 @@
       operator: Equal
   ```
 ### node affinity
-    choose which pods can be scheduled on a node, 
+    description: choose which pods can be scheduled on a node, 
     usecases: different teams work on different nodes, and pods need to be separated  respectively, 
     BUT: does not guarantee that extra pods are not scheduled on a desired node, 
     solution => combine it with taints/toleration  
@@ -134,7 +134,9 @@
   ```
 
 
-### daemonset => run a pod accross all nodes, usecases: log collection, monitoring
+### daemonset 
+    description: run a pod accross all nodes, 
+    usecases: log collection, monitoring
 * example of fluentD logger running on all nodes other than master:
   ```
   apiVersion: apps/v1
