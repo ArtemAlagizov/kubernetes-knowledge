@@ -187,5 +187,5 @@
 * get all the static pods:
   ```
   kubectl get pods --all-namespaces
-  # all -master appended are static pods
+  # all with -master appended in the name are static pods, for instance etcd-master
   ```
