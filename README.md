@@ -193,3 +193,7 @@
   ```
   kubectl run --restart=Never --image=busybox static-busybox --dry-run -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
   ```
+* edit static pod
+  ```
+  edit a definition at /etc/kubernetes/manifests/.*.yaml
+  ```
