@@ -68,7 +68,12 @@
 ### annotations
 * used for extra meta information like
   * integration info like version 
-### taint/tolerations
+### taint/tolerations 
+    filter out which pods can be scheduled on a node, 
+    usecases: different teams work on different nodes, and pods need to be separated respectively, 
+    BUT: does not guarantee that desired pod ends up on a desired node, 
+    solution => combine it with node affinity
+
 * add taint on master, NoSchedule
   ```
   kubectl taint nodes master node-role.kubernetes.io/master=all:NoSchedule
@@ -94,6 +99,12 @@
       effect: NoSchedule
       operator: Equal
   ```
+### node affinity
+    choose which pods can be scheduled on a node, 
+    usecases: different teams work on different nodes, and pods need to be separated  respectively, 
+    BUT: does not guarantee that extra pods are not scheduled on a desired node, 
+    solution => combine it with taints/toleration  
+
 ### daemonset => run a pod accross all nodes, usecases: log collection, monitoring
 * example of fluentD logger running on all nodes other than master:
   ```
