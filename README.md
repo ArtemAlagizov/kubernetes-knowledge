@@ -54,3 +54,7 @@
   ```
   kubectl get pods --selector env=dev
   ```
+* filter out all resources based on labels
+  ```
+  kubectl get all --selector env=dev
+  ```
