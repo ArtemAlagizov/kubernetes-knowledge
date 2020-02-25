@@ -275,3 +275,12 @@
       ```
       kubectl top node
       ```
+* logging
+  * to see logs from pod live with one container
+    ```
+    kubectl logs -f <pod-name>
+    ```
+  * to see logs from pod live with more than one container
+    ```
+    kubectl logs -f <pod-name> <container-name>
+    ```
