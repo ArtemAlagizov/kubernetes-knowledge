@@ -8,3 +8,8 @@ alias kctx='kubectl config current-context'
 alias kcon='kubectl config use-context'
 alias kgc='kubectl config get-context'
 ```
+### commands
+* creeate all resources from a folder
+  ```
+  kubectl apply -f .
+  ```
