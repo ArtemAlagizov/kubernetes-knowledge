@@ -254,3 +254,15 @@
       name: kubeconfig
   status: {}  
   ```
+* use custom scheduler
+  ```
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: nginx
+  spec:
+    containers:
+    -  image: nginx
+       name: nginx
+    schedulerName: my-scheduler
+  ```
