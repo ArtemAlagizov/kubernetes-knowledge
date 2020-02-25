@@ -266,3 +266,9 @@
        name: nginx
     schedulerName: my-scheduler
   ```
+
+## monitoring and logging
+* solutions
+  * prometheus 
+  * metrics-server
+* 
