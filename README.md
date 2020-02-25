@@ -271,4 +271,7 @@
 * solutions
   * prometheus 
   * metrics-server
-* 
+    * to get memory consumtion per node
+      ```
+      kubectl top node
+      ```
