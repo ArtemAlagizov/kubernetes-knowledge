@@ -18,3 +18,7 @@ alias kgc='kubectl config get-context'
   kubectl get pods
   kubectl exec -it <pod-name> --container <container-name> -- /bin/bash
   ```
+* set default namespace
+  ```
+  kubectl config set-context --current --namespace=<namespace-name>
+  ```
