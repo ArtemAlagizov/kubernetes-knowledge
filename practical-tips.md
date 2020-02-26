@@ -19,6 +19,10 @@ function klogs() { kubectl logs $*;}
 function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
 ```
 ### commands
+* add extra columns to the output
+  ```
+  kubectl get pods -o wide
+  ```
 * creeate all resources from a folder
   ```
   kubectl apply -f .
