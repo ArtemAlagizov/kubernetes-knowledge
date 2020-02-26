@@ -404,6 +404,23 @@
           APP_COLOR: blue
           APP_ENV: prod
         ```
+        **use env variable value from configMap**
+        ```
+         apiVersion: v1
+         kind: Pod
+         metadata:
+           name: ubuntu-sleeper-2
+         spec:
+           containers:
+           - name: ubuntu
+             image: ubuntu
+             command: ["sleep"]
+             args: ["5000"]
+             envFrom:
+             - configMapRef:
+                 name: webapp-config-map
+        ```
+        
   * from secrets
 * example file
   ```
