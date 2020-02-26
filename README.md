@@ -477,6 +477,7 @@
         ...
         cat /opt/app-secret-volumes/DB_PASSWORD => to view the secret in container
         ```
+        * best pracitces is to encrypt secret data at rest => [encrypt-data](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)
 * example file
   ```
   apiVersion: v1
