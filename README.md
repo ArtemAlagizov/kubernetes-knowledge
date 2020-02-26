@@ -284,3 +284,9 @@
     ```
     kubectl logs -f <pod-name> <container-name>
     ```
+## lifecycle management
+* two types of updates
+  * recreate
+    * kill all the deployments and recreate them, results in app downtime
+  * rolling updates
+    * kill and deploy new version gradually
