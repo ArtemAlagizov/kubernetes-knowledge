@@ -32,3 +32,24 @@ function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
   ```
   kubectl config set-context --current --namespace=<namespace-name>
   ```
+## selectors
+  * select all image names from all pods
+    ```
+    kubectl get po -o jsonpath="{range .items[*]}{range .spec.containers[*]}{.image}, {end}"
+    ```
+  * select all pods with name and containers in the pods:
+    ```
+    kubectl get po -o jsonpath="{range .items[*]} {.metadata.name} => {range .spec.containers[*]}{.image} {.name}, {end}" | tr "," "\n"
+    ```
+  * select all init containers
+    ```
+    kubectl get po -o jsonpath="{range.items[*]} {.metadata.name} => {range.spec.initContainers[*]}{.image} {.name}, {end}" | tr "," "\n"
+    ```
+  * get all images for pod named purple
+    ```
+    kubectl get po -o jsonpath="{range.items[?(@.metadata.name=='purple')]} {range .spec.containers[*]}{.image}, {end}" | tr "," "\n"
+    ```
+  * get pod container status
+    ```
+    kgp -o jsonpath="{range.items[?(@.metadata.name=='purple')]}{range.status.containerStatuses[*]}{.state}, {.end}" | tr "," "\n"
+    ```
