@@ -378,6 +378,26 @@
     - name: ubuntu
       image: ubuntu
       command: ["sleep"]
-      args: ["5000"]
-  
+      args: ["5000"]  
+  ```
+### env variables
+* types of env variables
+  * key-value
+  * from configMaps
+  * from secrets
+* example file
+  ```
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: ubuntu-sleeper-2
+  spec:
+    containers:
+    - name: ubuntu
+      image: ubuntu
+      command: ["sleep"]
+      args: ["5000"]  
+      env:
+      - name: HOST_IP
+        value: 172.19.234.73
   ```
