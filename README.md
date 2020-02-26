@@ -538,3 +538,25 @@
   ```
   kubectl uncordon node01
   ```
+#### upgrade kubernetes 
+* what is the latest stable version available for upgrade?
+  ```
+  kubeadm upgrade plan
+  ```
+* recommended way to upgrade
+  ```
+  ugrade one minor version at a time until the latest stable version
+  ```
+* upgrade procedure
+  * uprade kubeadm tool
+    ```
+    apt install kubeadm=1.17.0-00
+    ```
+  * upgrade components
+    ```
+    kubeadm upgrade apply v1.17.0
+    ```
+  * upgrade the kubelet
+    ```
+    apt install kubelet=1.17.0-00
+    ```
