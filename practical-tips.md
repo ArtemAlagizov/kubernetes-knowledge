@@ -1,12 +1,22 @@
 ### aliases
-```
+```bash
 alias kc='kubectl'
 alias kgp='kubectl get pods'
 alias kgs='kubectl get svc'
 alias kgc='kubectl get componentstatuses'
 alias kctx='kubectl config current-context'
-alias kcon='kubectl config use-context'
 alias kgc='kubectl config get-context'
+alias kswitch='kubectl config use-context'
+alias knamespace='kubectl config set-context `kubectl config current-context` --namespace'
+
+# get all services with in a cluster and the nodePorts they use (if any)
+alias ksvc="kubectl get --all-namespaces svc -o json | jq -r '.items[] | [.metadata.name,([.spec.ports[].nodePort | tostring ] | join(\"|\"))] | @csv'"
+# shortcuts for frequent kubernetes commands
+alias kpods="kubectl get po"
+alias kinspect="kubectl describe"
+function krun() { name=$1; shift; image=$1; shift; kubectl run -it --generator=run-pod/v1 --image $image $name -- $@; }
+function klogs() { kubectl logs $*;}
+function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
 ```
 ### commands
 * creeate all resources from a folder
