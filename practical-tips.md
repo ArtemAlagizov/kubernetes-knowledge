@@ -49,7 +49,7 @@ function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
     ```
     kubectl get po -o jsonpath="{range.items[?(@.metadata.name=='purple')]} {range .spec.containers[*]}{.image}, {end}" | tr "," "\n"
     ```
-  * get pod container status
+  * get pod named purple containers status
     ```
-    kgp -o jsonpath="{range.items[?(@.metadata.name=='purple')]}{range.status.containerStatuses[*]}{.state}, {.end}" | tr "," "\n"
+    kgp -o jsonpath="{range.items[?(@.metadata.name=='purple')]}{range.status.containerStatuses[*]}{.name} => {.state}, {.end}" | tr "," "\n"
     ```
