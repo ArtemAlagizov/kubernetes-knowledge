@@ -419,9 +419,64 @@
              envFrom:
              - configMapRef:
                  name: webapp-config-map
-        ```
-        
+        ```        
   * from secrets
+    * creation options:
+      * imperative
+        ```
+        kubectl create secret generic <secret-name> --from-literal=<key>=<value> (of --from-file=app_secrets.properties)
+        ```
+      * declarative
+        ```
+        kubectl create -f app-secret.yaml
+        echo -n 'password' | base64 => to encode the data
+        echo -n 'SefE=ew' | base64 decode => to decode the data
+        ```
+        **app-secret.yaml**
+        ```
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: app-config-map
+        data:
+          DB_HOST: sSDsd=
+          DB_PASSWORD: SefE=ew
+        ```
+        **use env variable value from secret**
+        ```
+         apiVersion: v1
+         kind: Pod
+         metadata:
+           name: ubuntu-sleeper-2
+         spec:
+           containers:
+           - name: ubuntu
+             image: ubuntu
+             envFrom:
+             - secretRef:
+                 name: webapp-secrets
+        ```
+        or 
+        ```
+        ...
+        env: 
+          - name: DB_PASSWORD
+            valueFrom: 
+              secretKeyRef: 
+                name: webapp-secrets
+                key: DB_PASSWORD
+        ```
+        or 
+        ```
+        ...
+        volumes:
+        - name: app-secret-volume:
+            secret:
+              secretName: webapp-secret
+              
+        ...
+        cat /opt/app-secret-volumes/DB_PASSWORD => to view the secret in container
+        ```
 * example file
   ```
   apiVersion: v1
