@@ -383,7 +383,27 @@
 ### env variables
 * types of env variables
   * key-value
-  * from configMaps
+  * from configMaps 
+    * central place to store env variables for multiple pods
+    * creation options:
+      * imperative
+        ```
+        kubectl create configmap <config-name> --from-literal=<key>=<value> (of --from-file=app_config.properties)
+        ```
+      * declarative
+        ```
+        kubectl create -f app-config.yaml
+        ```
+        **app-config.yaml**
+        ```
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: app-config-map
+        data:
+          APP_COLOR: blue
+          APP_ENV: prod
+        ```
   * from secrets
 * example file
   ```
