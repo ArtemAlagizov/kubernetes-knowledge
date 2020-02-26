@@ -61,3 +61,7 @@ function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
     ```
     kubectl get po --all-namespaces -o jsonpath="{range.items[*]} {.metadata.name} => {.spec.nodeName}, {.end}" | tr "," "\n"
     ```
+  * get taints on master node
+    ```
+    k get node --all-namespaces -o jsonpath="{range.items[?(@.metadata.name=='master')]}{.spec.taints}, {.end}" | tr "," "\n"
+    ```
