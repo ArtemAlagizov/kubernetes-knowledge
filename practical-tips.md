@@ -13,3 +13,8 @@ alias kgc='kubectl config get-context'
   ```
   kubectl apply -f .
   ```
+* get inside a running container
+  ```
+  kubectl get pods
+  kubectl exec -it <pod-name> --container <container-name> -- /bin/bash
+  ```
