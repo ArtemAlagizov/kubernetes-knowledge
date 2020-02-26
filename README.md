@@ -560,3 +560,29 @@
     ```
     apt install kubelet=1.17.0-00
     ```
+#### backup & restore
+* three things to consider for backup (velero can help to backup a cluster deployment)
+  * resources
+    * store on github    
+  * etcd db
+  * persistance
+* etcd
+  * for all the etcd commands
+    * specify 
+      * --endpoints
+      * --cacert
+      * --cert
+      * --key
+  * possible to create a snapshot of etcd db
+    ```bash
+    etcdctl snapshot save snapshot.db
+    etcdctl snapshot status snapshot.db #get the status
+    ```
+  * to restore from db file
+    ```bash
+    service kube-apiserver stop #depends on etcd
+    etcdctl snapshot restore snapshot.db
+    system daemon-reload
+    service etcd start
+    service kube-apiserver start
+    ```
