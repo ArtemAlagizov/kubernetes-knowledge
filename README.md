@@ -285,8 +285,13 @@
     kubectl logs -f <pod-name> <container-name>
     ```
 ## lifecycle management
-* two types of updates
+* two types of updates (StrategyType in deployment description)
   * recreate
     * kill all the deployments and recreate them, results in app downtime
   * rolling updates
     * kill and deploy new version gradually
+    * RollingUpdateStrategy tells how many pods can be down at a time (RollingUpdateStrategy: 25% max unavailable, 25% max surge)
+* edit deployment on the fly
+  ```
+  kubectl edit deployment <deployment-name>
+  ```
