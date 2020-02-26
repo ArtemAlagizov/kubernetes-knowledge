@@ -23,6 +23,10 @@ function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
   ```
   kubectl get pods -o wide
   ```
+* save all currently deployed resources to a file
+  ```
+  kubectl get all --all-namespaces -o yaml > all-deployed-resources.yaml
+  ```
 * creeate all resources from a folder
   ```
   kubectl apply -f .
