@@ -525,3 +525,16 @@
       - name: HOST_IP
         value: 172.19.234.73
   ```
+## maintainance
+* empty the node node01 of all applications and mark it unschedulable (must be forced if node contains pods that are not part of replicaset)
+  ```
+  kubectl drain node01 --ignore-daemonsets
+  ```
+* set node to be unschedulable without killing the running apps
+  ```
+  kubectl cordon node01
+  ```
+* configure node to be schedulable again
+  ```
+  kubectl uncordon node01
+  ```
