@@ -363,3 +363,21 @@
     replicas: 4
     updatedReplicas: 4
   ```
+## commands and agruments
+* in pod definition file
+  * **command** corresponds to **entrypoint** in Dockerfile (run at startup of container)
+  * **args** corresponds to **cmd** in Dockerfile default param passed to the entrypoint)
+* example file
+  ```
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: ubuntu-sleeper-2
+  spec:
+    containers:
+    - name: ubuntu
+      image: ubuntu
+      command: ["sleep"]
+      args: ["5000"]
+  
+  ```
