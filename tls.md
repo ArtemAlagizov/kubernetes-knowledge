@@ -70,4 +70,14 @@
     * also generate certificate for communicating with kube-api server
       * use naming of system:node:node01
       * also add nodes to GROUP system:group
-  
+
+### view certificates
+* get kube-api server certificates details
+  ```
+  openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
+  ```
+  * CN
+  * alternative names
+  * issuer
+  * expiration date
+
