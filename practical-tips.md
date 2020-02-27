@@ -92,8 +92,14 @@ $ kubectl get deployment kube-d TAB
   kubectl exec -it <pod-name> --container <container-name> -- /bin/bash
   ```
 * set default namespace
-  ```
+  ```bash
+  # option 0
   kubectl config set-context --current --namespace=<namespace-name>
+  # option 1
+  kubectl config set-context $(kubectl config current-context) --namespace=<namespace-name>
+  
+  # verify
+  kubectl config view | grep namespace
   ```
 ## selectors
   * select all image names from all pods
