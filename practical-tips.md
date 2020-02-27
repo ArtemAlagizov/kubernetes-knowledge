@@ -18,6 +18,32 @@ function krun() { name=$1; shift; image=$1; shift; kubectl run -it --generator=r
 function klogs() { kubectl logs $*;}
 function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
 ```
+### short names
+|  short                      | long                      | 
+|:-------------------------|:---------------------------|
+|csr |    certificatesigningrequests|
+|cs	|componentstatuses|
+|cm	|configmaps|
+|ds	|daemonsets|
+|deploy	|deployments|
+|ep	|endpoints|
+|ev	|events|
+|hpa |    horizontalpodautoscalers|
+|ing |ingresses|
+|limits	|limitranges|
+|ns	|namespaces|
+|no	|nodes|
+|pvc	|persistentvolumeclaims|
+|pv	|persistentvolumes|
+|po	|pods|
+|pdb	|poddisruptionbudgets|
+|psp	|podsecuritypolicies|
+|rs	|replicasets|
+|rc	|replicationcontrollers|
+|quota	|resourcequotas|
+|sa	|serviceaccounts|
+|svc	|services|
+
 ### commands
 * add extra columns to the output
   ```
