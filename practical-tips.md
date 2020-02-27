@@ -18,6 +18,23 @@ function krun() { name=$1; shift; image=$1; shift; kubectl run -it --generator=r
 function klogs() { kubectl logs $*;}
 function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
 ```
+
+### autocomplition
+```bash
+# autocomplition of commands
+$ kubectl g TAB
+$ kubectl get
+$ kubectl get de TAB
+=> kubectl get deployments
+
+# autocomplition of resource names in the current context
+$ kubectl get deployment TAB TAB
+=> kube-dns kube-dns-autoscaler kube-cert-manager
+$ kubectl get deployment kube-d TAB
+=> kubectl get deployment kube-dns
+```
+
+
 ### short names
 |  short                      | long                      | 
 |:-------------------------|:---------------------------|
