@@ -41,7 +41,7 @@
      ```
    * certificate signing request
      ```
-     openssl req -new -key ca.key  -subj "CN=KUBERNETES-CA" -out ca.csr
+     openssl req -new -key ca.key  -subj "/CN=KUBERNETES-CA" -out ca.csr
      ```
    * sign certificates
      ```
@@ -54,9 +54,13 @@
     ```
   * certificate signing request
     ```
-    openssl req -new -key ca.key  -subj "CN=kube-admin" -out admin.csr
+    openssl req -new -key ca.key  -subj "/CN=kube-admin/O=system:masters" -out admin.csr
     ```
   * sign certificates with CA, which makes it a vlid certifiate within the cluster
     ```
     openssl x509 -req -in -CA admin.csr -CAKey ca.key ca.key -out admin.crt
      ```
+* in the same way create certificate and key pair for contol plane components
+  * /CN=system-kube-scheduler
+  * /CN=system-kube-control-manager
+  * /CN=system-kube-proxy
