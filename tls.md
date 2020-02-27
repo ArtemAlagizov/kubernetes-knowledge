@@ -32,4 +32,18 @@
       * is a client of etcd as this is the only thing talking to etcd server
     * etcd server (etcd.crt, etcd.key)
     * kubelet server (kubelet.crt, kubelet.key)
-   
+    
+ ### certificate creation
+ * create certificate and key pair for CA using openssl
+   * generate keys 
+     ```
+     openssl genrsa -out ca.key 2048
+     ```
+   * certificate signing request
+     ```
+     openssl req -new -key ca.key  -subj "CN=KUBERNETES-CA" -out ca.csr
+     ```
+   * sign certificates
+     ```
+     openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+     ```
