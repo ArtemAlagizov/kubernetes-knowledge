@@ -80,7 +80,7 @@ $ kubectl get deployment kube-d TAB
   ```
 * save all currently deployed resources to a file
   ```
-  kubectl get all --all-namespaces -o yaml > all-deployed-resources.yaml
+  kubectl get all --all-namespaces --export -o yaml > all-deployed-resources.yaml
   ```
 * creeate all resources from a folder
   ```
