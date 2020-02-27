@@ -660,3 +660,87 @@
      --initial-advertise-peer-urls=https://127.0.0.1:2380 \
      snapshot restore /tmp/snapshot-pre-boot.db
       ```
+## security
+### authentication
+* option 0 (not for production): plain text file
+  * create a file containing user credentials
+    ```
+    password123,user1,u0001
+    password123,user2,u0002
+    password123,user3,u0003
+    password123,user4,u0004
+    password123,user5,u0005
+    ```
+  * modify /etc/kubernetes/manifests/kube-apiserver.yaml to include the file into pod
+    ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: kube-apiserver
+      namespace: kube-system
+    spec:
+      containers:
+      - command:
+        - kube-apiserver
+          <content-hidden>
+        image: k8s.gcr.io/kube-apiserver-amd64:v1.11.3
+        name: kube-apiserver
+        volumeMounts:
+        - mountPath: /tmp/users
+          name: usr-details
+          readOnly: true
+      volumes:
+      - hostPath:
+          path: /tmp/users
+          type: DirectoryOrCreate
+        name: usr-details
+    ```
+  * modify the kube-apiserver startup options to include the basic-auth file
+    ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: null
+      name: kube-apiserver
+      namespace: kube-system
+    spec:
+      containers:
+      - command:
+        - kube-apiserver
+        - --authorization-mode=Node,RBAC
+          <content-hidden>
+        - --basic-auth-file=/tmp/users/user-details.csv
+    ```
+  * create the necessary roles and role bindings for these users
+    ```
+    ---
+    kind: Role
+    apiVersion: rbac.authorization.k8s.io/v1
+    metadata:
+      namespace: default
+      name: pod-reader
+    rules:
+    - apiGroups: [""] # "" indicates the core API group
+      resources: ["pods"]
+      verbs: ["get", "watch", "list"]
+
+    ---
+    # This role binding allows "jane" to read pods in the "default" namespace.
+    kind: RoleBinding
+    apiVersion: rbac.authorization.k8s.io/v1
+    metadata:
+      name: read-pods
+      namespace: default
+    subjects:
+    - kind: User
+      name: user1 # Name is case sensitive
+      apiGroup: rbac.authorization.k8s.io
+    roleRef:
+      kind: Role #this must be Role or ClusterRole
+      name: pod-reader # this must match the name of the Role or ClusterRole you wish to bind to
+      apiGroup: rbac.authorization.k8s.io
+    ```
+  * afterwards the users can login like so
+    ```
+    curl -v -k https://localhost:6443/api/v1/pods -u "user1:password123"
+    ```
