@@ -43,13 +43,13 @@
     /kube-proxy                  Install the kube-proxy addon to a Kubernetes cluster
   ```
 * kubeadm init phase allows to specify phases to be executed
- ```bash
- # run all sub-steps from control-plane step
- kubeadm init phase control-plane controller-manager 
- 
- # run controller-manager sub-step from control-plane step
- kubeadm init phase control-plane controller-manager 
- ```
+   ```bash
+   # run all sub-steps from control-plane step
+   kubeadm init phase control-plane controller-manager 
+
+   # run controller-manager sub-step from control-plane step
+   kubeadm init phase control-plane controller-manager 
+   ```
 
 ## scheduling
 
