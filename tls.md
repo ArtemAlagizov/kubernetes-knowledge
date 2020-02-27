@@ -64,3 +64,10 @@
   * /CN=system-kube-scheduler
   * /CN=system-kube-control-manager
   * /CN=system-kube-proxy
+* create certificate for server in the same way
+  * for kube-api server extra params to pass is openssl.cnf, containing aliases and ip
+  * for kubelet each node must generate its' own certificate (kubelet.yaml)
+    * also generate certificate for communicating with kube-api server
+      * use naming of system:node:node01
+      * also add nodes to GROUP system:group
+  
