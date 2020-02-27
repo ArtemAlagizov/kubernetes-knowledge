@@ -80,4 +80,12 @@
   * alternative names
   * issuer
   * expiration date
-
+### check logs
+* natively
+  ```
+  journalctl -u etcd.service -l
+  ```
+* in a pod
+  ```
+  kubectl logs etcd-master
+  ```
