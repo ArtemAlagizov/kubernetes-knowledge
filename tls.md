@@ -47,3 +47,16 @@
      ```
      openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
      ```
+* create certificate and key pair for admin and CA certificate using openssl
+  * generate keys 
+    ```
+    openssl genrsa -out admin.key 2048
+    ```
+  * certificate signing request
+    ```
+    openssl req -new -key ca.key  -subj "CN=kube-admin" -out admin.csr
+    ```
+  * sign certificates with CA, which makes it a vlid certifiate within the cluster
+    ```
+    openssl x509 -req -in -CA admin.csr -CAKey ca.key ca.key -out admin.crt
+     ```
