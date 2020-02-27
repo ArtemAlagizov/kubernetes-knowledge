@@ -50,6 +50,14 @@
    # run controller-manager sub-step from control-plane step
    kubeadm init phase control-plane controller-manager 
    ```
+ * reset a cluster
+   ```bash
+   # kill all the resources
+   kubeadm reset
+   
+   # clean ip table
+   iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+   ```
 
 ## scheduling
 
