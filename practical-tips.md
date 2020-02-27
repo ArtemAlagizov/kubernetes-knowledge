@@ -19,6 +19,18 @@ function klogs() { kubectl logs $*;}
 function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
 ```
 
+### internal structure of a resource
+```bash
+# get first level field types
+kubectl explain pod 
+
+# get all fields types
+kubectl explain pod --recursive
+
+# get particular field type
+kubectl explain pod.spec.affinity --recursive
+```
+
 ### autocomplition
 ```bash
 # autocomplition of commands
