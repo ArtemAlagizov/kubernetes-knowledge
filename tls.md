@@ -90,3 +90,31 @@
   ```
   kubectl logs etcd-master
   ```
+### certificate api
+* CertificateSigningRequest example file
+  ```
+  apiVersion: certificates.k8s.io/v1beta1
+  kind: CertificateSigningRequest
+  metadata:
+    name: akshay
+  spec:
+    groups:
+    - system:authenticated
+    request: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ1ZqQ0NBVDRDQVFBd0VURVBNQTBHQTFVRUF3d0dZV3R6YUdGNU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRgpBQU9DQVE4QU1JSUJDZ0tDQVFFQXkyYTQ3blZJbFZuVi8vcStLOFVVMVlmeFhkOTB3TmJ0dzRSTmtWQlFkSVVOCkRQNHVMa2hmMVU2Vk1RbTljZ1F6MUtOTmdOU3BFc1E4SHJ0VkxZWDFrWWh6cnNnUWZ0dm5uV1BoVTdDRWZyeWEKZVpSQ1Bvb210bEl2WFZtSFZXcVJXNmFCaTNoajcybmQwTmEycElWbmF2OWY2KzcvT1RuMFRtSTJoeUthd2IxUwpYOW4rNm8vMlN1c2hyN3VZeDA1ZUVXVyt2QnBWK0t2ZzhMNWhMY0Z0bWx1TVJDRVFCeTFTQ05TNlZtRTdRVWNPCmlIYWgzUCsrZktQdlRreUcwMnBCZUlZdG15aTg5RkRZZFZCbGJ3TWdpa002QWZXTHRsbmpxVElCaEFyOU9LYngKV1RYeUFDdHhTa25CTkRoM1l3RWEwTGxBSTBBYWU4Y0lKeXFKYnlqR3Z3SURBUUFCb0FBd0RRWUpLb1pJaHZjTgpBUUVMQlFBRGdnRUJBQUZFODNZQnlTdXB5MUNuelVsNzRPbFB5VTlwR2t3ZHppczBNQjF4cnBkR1pKcndIVjNrCnd2Unphclc5WWlRZE9icFlMWEJuRUJlU2RMYityQnBSa1N2R3BYSzlhOVFZZm0rb21uWDlSbjVsNWp0eG5Gc2UKdUNabHpJQVIzYXRBYjNtUmVRVXBWRlFuYlRqcVhnSDhYVEhJSVM0QXduK3A4VEtCa1dFUzhPRkhzNWRRNnRUOApFYUVtWlYyZnlxZzlsQ0FpeXBwZlRDKy9rUkVYeDBlSVluMHhaUFNuR3grbm9BUFh2T3UxN3diNWp3ZlNMNGI3CnlQN1lUQndReUEwa0VjYTlNWFBleSs2WW5QUEFlMEJiM0VGQnE2NjRIa2lZMW04ZHpXUnNSNVpVODQ0QlJPaE4KUHBBTDVvdFFFUE5PRWxtaUNyNkQ4amUwSG5haWNIZUc4WkE9Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=
+    usages:
+    - digital signature
+    - key encipherment
+    - server auth
+  ```
+* get base64 version of a certificate request (crt)
+  ```
+  base64 -w 0 akshay.csr
+  ```
+* get cert requests
+  ```
+  kubectl get csr
+  ```
+* approve cert request
+  ```
+  kubectl certificate approve akshay
+  ```
