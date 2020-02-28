@@ -123,7 +123,7 @@
   kubectl certificate deny agent-smith
   ```
 ### kube config
-* needed for convenience and to not type every time --server=... --client-key=..., ...
+* needed for convenience and to not type every time --server=... --client-key=..., ... to commands like **kubectl get pods**
 * 3 main sections
   * users
   * clusters
