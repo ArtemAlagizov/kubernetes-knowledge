@@ -46,6 +46,7 @@
    * sign certificates
      ```
      openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+     openssl x509 -req -in /etc/kubernetes/pki/apiserver-etcd-client.csr -CA /etc/kubernetes/pki/etcd/ca.crt -CAkey /etc/kubernetes/pki/etcd/ca.key -CAcreateserial -out /etc/kubernetes/pki/apiserver-etcd-client.crt
      ```
 * create certificate and key pair for admin and CA certificate using openssl
   * generate keys 
