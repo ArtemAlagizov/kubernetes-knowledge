@@ -583,6 +583,7 @@
         value: 172.19.234.73
   ```
 ## maintainance
+#### drain/cordon
 * empty the node node01 of all applications and mark it unschedulable (must be forced if node contains pods that are not part of replicaset)
   ```
   kubectl drain node01 --ignore-daemonsets
