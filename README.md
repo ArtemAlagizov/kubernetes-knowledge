@@ -1,6 +1,7 @@
 # kubernetes-knowledge
 
-# cheatsheet
+**cka preparation**
+---
 
 ## kubeadm
 * kubeadm init executes all the steps needed to bring up a cluster
@@ -748,3 +749,14 @@
     ```
 ### node-node communication
 * communication between nodes must be encrypted
+### roles
+### role binding 
+* maps roles to users
+* check current role permissions
+  ```
+  kubectl auth can-i create deployment
+  ```
+* check permissions for a particular user
+  ```
+  kubectl auth can-i delete node --as dev-user --namespace default
+  ```
