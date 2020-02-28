@@ -583,7 +583,6 @@
         value: 172.19.234.73
   ```
 ## maintainance
-#### drain/cordon
 * empty the node node01 of all applications and mark it unschedulable (must be forced if node contains pods that are not part of replicaset)
   ```
   kubectl drain node01 --ignore-daemonsets
@@ -662,6 +661,8 @@
      snapshot restore /tmp/snapshot-pre-boot.db
       ```
 ## security
+### tls
+  see [tls part](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/tls.md)
 ### authentication
 * option 0 (not for production): plain text file
   * create a file containing user credentials
@@ -745,3 +746,5 @@
     ```
     curl -v -k https://localhost:6443/api/v1/pods -u "user1:password123"
     ```
+### node-node communication
+* communication between nodes must be encrypted
