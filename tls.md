@@ -122,3 +122,44 @@
   ```
   kubectl certificate deny agent-smith
   ```
+### kube config
+* needed for convenience and to not type every time --server=... --client-key=..., ...
+* 3 main sections
+  * users
+  * clusters
+  * context => connects the above two, **current-context** is the default (or %HOME/.kube/config)
+* view config file
+  ```
+  kubectl config view
+  ```
+* switch context
+  ```
+  kubect config --kubeconfig=/root/my-kube-config use-context user@cluster
+  ```
+* example file
+  ```
+  apiVersion: v1
+  clusters:
+  - cluster:
+      certificate-authority-data: DATA+OMITTED
+      server: https://172.17.0.16:6443
+    name: kubernetes
+  contexts:
+  - context:
+      cluster: kubernetes
+      user: kubernetes-admin
+      namespace: default
+    name: kubernetes-admin@kubernetes
+  current-context: kubernetes-admin@kubernetes
+  kind: Config
+  preferences: {}
+  users:
+  - name: agent-x
+    user:
+      client-certificate: /etc/kubernetes/pki/users/agent-x/agent-x.crt
+      client-key: /etc/kubernetes/pki/users/agent-x/agent-x.key
+  - name: kubernetes-admin
+    user:
+      client-certificate-data: REDACTED
+      client-key-data: REDACTED
+  ```
