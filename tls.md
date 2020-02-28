@@ -118,3 +118,7 @@
   ```
   kubectl certificate approve akshay
   ```
+* deny cert request
+  ```
+  kubectl certificate deny agent-smith
+  ```
