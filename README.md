@@ -830,3 +830,61 @@
     name: storage-admin
     apiGroup: rbac.authorization.k8s.io
   ```
+### image security
+* create a secret object with the credentials required to access the registry
+  ```
+  kubectl create secret docker-registry private-reg-cred --docker-username=dock_user --docker-password=dock_password --docker-server=myprivateregistry.com:5000 --docker-email=dock_user@myprivateregistry.com
+  ```
+* example deployment file
+  ```
+  kubectl edit deploy web
+  # add imagePullSecrets
+  ```
+  ```
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "3"
+      kubernetes.io/change-cause: kubectl set image deployments/web web=myprivateregistry.com:5000/nginx:alpine
+        --record=true
+    creationTimestamp: null
+    generation: 1
+    labels:
+      run: web
+    name: web
+    selfLink: /apis/apps/v1/namespaces/default/deployments/web
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        run: web
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          run: web
+      spec:
+        containers:
+        - image: myprivateregistry.com:5000/nginx:alpine
+          imagePullPolicy: IfNotPresent
+          name: web
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: private-reg-cred
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status: {}  
+  ```
