@@ -750,6 +750,11 @@
 ### node-node communication
 * communication between nodes must be encrypted
 ### roles
+* identify the authorization modes configured on the cluster
+  ```bash
+  kubectl describe pod kube-apiserver-master -n kube-system
+  #check --authorization-mode
+  ```
 ### role binding 
 * maps roles to users
 * check current role permissions
@@ -759,4 +764,31 @@
 * check permissions for a particular user
   ```
   kubectl auth can-i delete node --as dev-user --namespace default
+  ```
+* example of a role and binding that enables a user to create, list and delete pods
+  ```
+  kind: Role
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    namespace: default
+    name: developer
+  rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["list", "create"]
+  ```
+
+  ```
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: dev-user-binding
+  subjects:
+  - kind: User
+    name: dev-user
+    apiGroup: rbac.authorization.k8s.io
+  roleRef:
+    kind: Role
+    name: developer
+    apiGroup: rbac.authorization.k8s.io
   ```
