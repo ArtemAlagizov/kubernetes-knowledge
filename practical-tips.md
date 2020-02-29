@@ -103,7 +103,7 @@ $ kubectl get deployment kube-d TAB
   ```
 * update image of a deployment
   ```
-  kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1 --record
+  kubectl set image deployment/nginx-deployment <container-name>=nginx:1.9.1 --record
   ```
 ## selectors
   * select all image names from all pods
