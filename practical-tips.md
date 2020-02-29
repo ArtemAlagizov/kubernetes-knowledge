@@ -101,6 +101,10 @@ $ kubectl get deployment kube-d TAB
   # verify
   kubectl config view | grep namespace
   ```
+* update image of a deployment
+  ```
+  kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1 --record
+  ```
 ## selectors
   * select all image names from all pods
     ```
