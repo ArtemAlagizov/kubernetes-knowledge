@@ -792,3 +792,41 @@
     name: developer
     apiGroup: rbac.authorization.k8s.io
   ```
+### namespaced and not namespaced resources
+* get list of namespaced/not namespaced resources run
+  ```
+  kubectl api-resources --namespaced=true
+  ```
+### cluster roles
+* identify the authorization modes configured on the cluster wide scope
+
+### cluster role binding 
+* maps cluster roles to users
+* example of a clusterrole and clusterrolebinding for access to nodes
+  ```
+  kind: ClusterRole
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: storage-admin
+  rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["get", "watch", "list", "create", "delete"]
+  - apiGroups: ["storage.k8s.io"]
+    resources: ["storageclasses"]
+    verbs: ["get", "watch", "list", "create", "delete"]
+  ```
+  ```
+  kind: ClusterRoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: michelle-storage-admin
+  subjects:
+  - kind: User
+    name: michelle
+    apiGroup: rbac.authorization.k8s.io
+  roleRef:
+    kind: ClusterRole
+    name: storage-admin
+    apiGroup: rbac.authorization.k8s.io
+  ```
