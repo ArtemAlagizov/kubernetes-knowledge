@@ -911,3 +911,62 @@
         add: ["SYS_TIME"] <= to be able to set time within the container
   ```
 * user ID defined in the securityContext of the container overrides the User ID in the POD
+### network policy
+* ingress => traffic into a pod, egress => traffic to ouside of a pod
+* policy example 
+  ```
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    generation: 1
+    name: payroll-policy
+    selfLink: /apis/networking.k8s.io/v1/namespaces/default/networkpolicies/payroll-policy
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            name: internal
+      ports:
+      - port: 8080
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        name: payroll
+    policyTypes:
+    - Ingress
+  ```
+* policy to allow traffic from the 'Internal' application only to the 'payroll-service' and 'db-service'
+  ```
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: internal-policy
+    namespace: default
+  spec:
+    podSelector:
+      matchLabels:
+        name: internal
+    policyTypes:
+    - Egress
+    - Ingress
+    ingress:
+      - {}
+    egress:
+    - to:
+      - podSelector:
+          matchLabels:
+            name: mysql
+      ports:
+      - protocol: TCP
+        port: 3306
+
+    - to:
+      - podSelector:
+          matchLabels:
+            name: payroll
+      ports:
+      - protocol: TCP
+        port: 8080
+  ```
