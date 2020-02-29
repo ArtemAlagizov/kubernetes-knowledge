@@ -2,3 +2,4 @@
 * [list of advanced tutorials on kubernetes](https://techbeacon.com/enterprise-it/47-advanced-tutorials-mastering-kubernetes?utm_content=73574978&utm_medium=social&utm_source=twitter)
 * [troubleshooting kubernetes openai story](https://openai.com/blog/scaling-kubernetes-to-2500-nodes)
 * [installing-a-diy-bare-metal-gpu-cluster-for-kubernetes](https://hackernoon.com/installing-a-diy-bare-metal-gpu-cluster-for-kubernetes-364200254187)
+* [gpus-kubernetes-for-deep-learning-part](https://hackernoon.com/gpus-kubernetes-for-deep-learning-part-1-3-d8eebe0dd6fe)
