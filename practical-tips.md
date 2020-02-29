@@ -130,3 +130,7 @@ $ kubectl get deployment kube-d TAB
     ```
     k get node --all-namespaces -o jsonpath="{range.items[?(@.metadata.name=='master')]}{.spec.taints}, {.end}" | tr "," "\n"
     ```
+  * count outcome of a kubectl command
+    ```
+    kubectl get clusterrole --all-namespaces | wc -l
+    ```
