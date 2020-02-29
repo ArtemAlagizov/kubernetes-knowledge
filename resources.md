@@ -3,3 +3,4 @@
 * [troubleshooting kubernetes openai story](https://openai.com/blog/scaling-kubernetes-to-2500-nodes)
 * [installing-a-diy-bare-metal-gpu-cluster-for-kubernetes](https://hackernoon.com/installing-a-diy-bare-metal-gpu-cluster-for-kubernetes-364200254187)
 * [gpus-kubernetes-for-deep-learning-part](https://hackernoon.com/gpus-kubernetes-for-deep-learning-part-1-3-d8eebe0dd6fe)
+* [nvidia-gpu-operator-simplifying-gpu-management-in-kubernetes](https://devblogs.nvidia.com/nvidia-gpu-operator-simplifying-gpu-management-in-kubernetes/)
