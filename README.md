@@ -888,3 +888,26 @@
         terminationGracePeriodSeconds: 30
   status: {}  
   ```
+### security contexts
+* get what is the user used to execute the sleep process within the 'ubuntu-sleeper' pod?
+  ```
+  kubectl exec ubuntu-sleeper whoami
+  ```
+* change user used to execute sleep process
+  ```bash
+  ...
+  spec:
+  containers:
+  - command:
+    - sleep
+    - "4800"
+    image: ubuntu
+    imagePullPolicy: Always
+    name: ubuntu
+    resources: {}
+    securityContext:
+      runAsUser: 1010  <= THIS
+      capabilities:
+        add: ["SYS_TIME"] <= to be able to set time within the container
+  ```
+* user ID defined in the securityContext of the container overrides the User ID in the POD
