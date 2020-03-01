@@ -175,7 +175,7 @@
    * the set of step described above is done by all container-runtimes like docker, rkt, mesos, kubernetes
    * bridge program was created to handle this for container-runtimes
    * container network interface needed to be specified
-     * cni is implemented by rkt, mesos, kubernetes but not docker
+     * cni is implemented by rkt, mesos, kubernetes but not docker (it has container network model => cnm)
        * it is still possible to use cni plugins with docker, it needs to be done in 2 steps (kubernetes does it)
          * create conteainer without network
            ```
@@ -185,4 +185,23 @@
            ```
            bridge add 2e34dcf34 /var/run/netns/2e34dcf34
            ```
- 
+### kubernetes cluster networking 
+* requerements for nodes
+  * each node must have uniq
+        * ip address
+        * hostname
+        * mac
+  * master node    
+    * ports should be available
+      * 6443 for kube-api
+      * 10250 for kubelet
+      * 10251 for kube-scheduler
+      * 10252 for kube-controller-manager
+      * 2379 for etcd
+      * 2380 for etcd in case of multimaster
+  * worker node
+    * ports should be available
+       * 30000-32767 for services
+       * 10250 for kubelet
+       * 10251 for kube-scheduler
+       * 10252 for kube-controller-manager
