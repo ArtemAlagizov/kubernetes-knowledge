@@ -96,10 +96,28 @@
   ```
 * create internal network on a host
   * one option is to use **linux bridge** (virtual switch)
-    ```
+    ```bash
     # create a bridge
     ip link add v-net-0 type bridge
     
     # bring the bridge up
     ip link set dev v-net-0 up
+    
+    # connect namespaces to the bridge
+    ip link set veth-red netns red
+    ip link set veth-red-br master v-net-0
+    ip link set veth-red netns blue
+    ip link set veth-blue-br master v-net-0
+    ip -n red addr add 192.168.15.1 dev veth-red
+    ip -n blue addr add 192.168.15.2 dev veth-blue
+    ip -n red link set veth-red up
+    ip -n blue link set veth-blue up
+    ```
+  * connect the bridge to the host
+    ```
+    ip addr add 192.168.15.5/24 dev v-net-0
+    ```
+  * connect namespace to another location on LAN (192.168.1.3)
+    ```
+    ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5
     ```
