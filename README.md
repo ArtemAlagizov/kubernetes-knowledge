@@ -970,7 +970,7 @@
       - protocol: TCP
         port: 8080
   ```
-### storage
+## storage
 * persistent volume => cluster wide volume
   * default persistentVolumeReclaimPolicy: Retain
 * persistent volume claim => request for a persistent volume with some criteria (min size, ...)
