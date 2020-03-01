@@ -188,9 +188,9 @@
 ### kubernetes cluster networking 
 * requerements for nodes
   * each node must have uniq
-        * ip address
-        * hostname
-        * mac
+    * ip address
+    * hostname
+    * mac
   * master node    
     * ports should be available
       * 6443 for kube-api
