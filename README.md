@@ -1057,3 +1057,36 @@
       volumeId: <volumeId>
       fsType: ext4
   ```
+## networking
+* linux routing basics
+  * to see current routes use **route**
+  * to list and modify interfaces on the host
+    ```
+    ip link
+    ```
+  * to see ip addresses assigned to those interfaces
+    ```
+    ip addr
+    ```
+  * set ip address on an interface
+    ```
+    ip addr add 192.168.1.10/24 dev eth0
+    ```
+  * to add a route
+    ```
+    ip route add 192.168.2.0/24 via 192.168.1.1
+  * for systems to communicate with each other routing through gateways needs to be configured on all systems
+  * to set a default router through which all the outgoing requests will go
+    ```
+    ip route add default via 192.168.2.1
+    ```
+  * to enable packet forwarding
+    ```
+    vi /proc/sys/net/ipv4/ip_forward
+    # 0 is default => no forwarding
+    ```
+  * to persist packet forwarding
+    ```
+    vi /etc/sysctl.conf
+    # net.ipv4.ip_forward = 1
+    ```
