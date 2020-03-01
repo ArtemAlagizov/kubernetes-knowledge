@@ -129,3 +129,10 @@
     # check if works
     ip netns exec blue ping 192.168.1.3
     ```
+  * enable connectivity to the outer world
+    ```
+    ip netns exec blue ip route add default via 192.168.15.5
+    
+    # check if works
+    ip netns exec blue ping 8.8.8.8
+    ```
