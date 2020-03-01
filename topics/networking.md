@@ -157,3 +157,18 @@
     ```bash
     docker run --network bridge nginx
     ```
+* docker create virtual cables from bridge network to containers as described above
+* docker allows to map ports for accessing a container through docker host
+  ```bash
+  docker run -p 8080:80 nginx
+  
+  # after http://<host-ip>:8080 will lead to port 80 of the nginx container  
+  
+  # docker runs the command below once the command above is executed  
+  iptables -t nat -A DOCKER -j DNAT --dport 8080 --to-destination http://<internal-container-ip>:80
+  ```
+  * to see the rules docker creates
+    ```
+    iptables -nvL -t nat
+    ```
+  
