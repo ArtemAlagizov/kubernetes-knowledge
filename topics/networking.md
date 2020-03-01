@@ -141,3 +141,19 @@
     # route incoming traffic to the blue namespace
     iptables -t nat -A PREROUTING --dport 80 --to-destination 192.168.15.2:80 -j DNAT
     ```
+### networking in docker
+* types of network
+  * none => no connectivity to/from the container
+    ```
+    docker run --network none nginx
+    ```
+  * host => share host networking, no port mapping needed, it will be available on the port exposed in the container
+    ```bash
+    docker run --network host nginx
+    
+    # nginx will be available at http://<host-ip>:80
+    ```
+  * bridge => internal virtual network
+    ```bash
+    docker run --network bridge nginx
+    ```
