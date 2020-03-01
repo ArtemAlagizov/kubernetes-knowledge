@@ -83,6 +83,23 @@
   # bring up the interfaces within the 2 namespaces
   ip -n red link set veth-red up
   ip -n blue link set veth-blue up
+  
+  # check the connection
+  ip -n red ping 192.168.15.2
+  
+  # delete a virtual cable
+  ip -n red link del veth-red # second end gets deleted automatically
   ```
-* connect 
- 
+* check arp table of a namespace
+  ```
+  ip -n red arp
+  ```
+* create internal network on a host
+  * one option is to use **linux bridge** (virtual switch)
+    ```
+    # create a bridge
+    ip link add v-net-0 type bridge
+    
+    # bring the bridge up
+    ip link set dev v-net-0 up
+    ```
