@@ -205,3 +205,23 @@
        * 10250 for kubelet
        * 10251 for kube-scheduler
        * 10252 for kube-controller-manager
+* get ip address of a node
+  ```
+  kubectl get node -o wide
+  ```
+* get mac of the master node
+  ```
+  ip link show ens3
+* get mac of a node
+  ```
+  arp <node-name>
+  ```
+* get state of an interface
+  ```
+  ip link show <interface-name, ie docker0>
+  ```
+* check which route is used to ping google from the master node
+  ```
+  ip route show default
+  ```
+  
