@@ -1,4 +1,4 @@
-# some tips motha fucka
+# some tips from a geezer
 
 ## important key indicators to monitor for in a cluster:
   * latency / uptime for your endpoints
