@@ -171,4 +171,18 @@
     ```
     iptables -nvL -t nat
     ```
-  
+ * cni (container network interface)
+   * the set of step described above is done by all container-runtimes like docker, rkt, mesos, kubernetes
+   * bridge program was created to handle this for container-runtimes
+   * container network interface needed to be specified
+     * cni is implemented by rkt, mesos, kubernetes but not docker
+       * it is still possible to use cni plugins with docker, it needs to be done in 2 steps (kubernetes does it)
+         * create conteainer without network
+           ```
+           docker run --network=none nginx
+           ```
+         * invoke the bridge plugin 
+           ```
+           bridge add 2e34dcf34 /var/run/netns/2e34dcf34
+           ```
+ 
