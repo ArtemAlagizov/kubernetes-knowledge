@@ -52,3 +52,37 @@
   * ping
   * nslookup => queries dns server
   * dig
+### network namespaces
+* create new network namespace 
+  ```
+  ip netns add <namespace-name>
+  ```
+* list network namespaces
+  ```
+  ip netns
+  ```
+* execute a command inside a namespace
+  ```
+  ip netns exec <namespace-name> <command, ie ip link>
+  # or
+  ip -n <namespace-name> link
+  ```
+* connect 2 namespaces (red and blue) by virtual cable
+  ```bash
+  # create virtual cable
+  ip link add veth-red type veth peer name veth-blue
+  
+  # attach cable ends to namespaces
+  ip link set veth-red netns red
+  ip link set veth-blue netns blue
+  
+  # assign ip addresses in these namespaces
+  ip -n red addr add 192.168.15.1 dev veth-red
+  ip -n blue addr add 192.168.15.2 dev veth-blue
+  
+  # bring up the interfaces within the 2 namespaces
+  ip -n red link set veth-red up
+  ip -n blue link set veth-blue up
+  ```
+* connect 
+ 
