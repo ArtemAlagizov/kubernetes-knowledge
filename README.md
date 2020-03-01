@@ -1099,7 +1099,7 @@
   # search mysite.com prod.mysite.com => will search for host names appending the search entries
   ```
 * resolver first checks /etc/hosts and if doesn't find an entry there goes to nameserver
-  * order can be changed viw **/etc/nsswitch.conf** **hosts:**
+  * order can be changed in **/etc/nsswitch.conf** **hosts:**
     ```
     hosts:          files mdns4_minimal [NOTFOUND=return] dns
     ```
