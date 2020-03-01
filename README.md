@@ -1096,9 +1096,18 @@
   vi /etc/resolv.conf
   # nameserver 192.168.1.100
   # nameserver 8.8.8.8
+  # search mysite.com prod.mysite.com => will search for host names appending the search entries
   ```
 * resolver first checks /etc/hosts and if doesn't find an entry there goes to nameserver
   * order can be changed viw **/etc/nsswitch.conf** **hosts:**
     ```
     hosts:          files mdns4_minimal [NOTFOUND=return] dns
     ```
+* record types on dns server
+  * A => ip to host names
+  * AAAA => ip6 to host names 
+  * CNAME => mapping one name to another name
+* tools to test dns
+  * ping
+  * nslookup => queries dns server
+  * dig
