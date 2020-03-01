@@ -122,7 +122,7 @@
     ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5
     ```
   * enable host to send messages to another location on LAN
-    ```
+    ```bash
     # add NAT on the host, this way when receiving packets from namespace it would appear coming from the host
     iptables -t -nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE
     
@@ -130,9 +130,14 @@
     ip netns exec blue ping 192.168.1.3
     ```
   * enable connectivity to the outer world
-    ```
+    ```bash
     ip netns exec blue ip route add default via 192.168.15.5
     
     # check if works
     ip netns exec blue ping 8.8.8.8
+    ```
+  * enable outer world to reach blue namespace
+    ```bash
+    # route incoming traffic to the blue namespace
+    iptables -t nat -A PREROUTING --dport 80 --to-destination 192.168.15.2:80 -j DNAT
     ```
