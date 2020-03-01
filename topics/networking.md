@@ -121,3 +121,11 @@
     ```
     ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5
     ```
+  * enable host to send messages to another location on LAN
+    ```
+    # add NAT on the host, this way when receiving packets from namespace it would appear coming from the host
+    iptables -t -nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE
+    
+    # check if works
+    ip netns exec blue ping 192.168.1.3
+    ```
