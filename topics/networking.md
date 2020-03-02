@@ -237,7 +237,7 @@
       * create bridge network on every node
       * choose ip range and give each node a subnet, 10.44.2.1/24, 10.44.3.1/24
       * set the ip range for the bridge interfaces
-      * create a script that will assign ip address to a containers
+      * create a script that will assign ip address to containers
         ```bash
         # create virtual cable
         ip link add veth-red type veth peer name veth-blue
@@ -269,3 +269,14 @@
           |10.244.2.0/24|192.168.1.12|
           |10.244.3.0/24|192.168.1.13|        
           * this way it becomes a big bridge network across nodes (10.244.0.0/16)
+        * cni standards have specific requirements for the script for assigning ip addresses to containers
+          * there should be ADD section
+          * there should be DEL section
+        * kubelet on each node needs to be configured to use the script
+          * --cni-conf-dir=/etc/cni/net.d (to get script name)
+          * --cni-bin-dir=/etc/cni/bin (to get script itself)
+          * it runs 
+            ```
+            ./net-script.sh add <container> <namespace>
+            ```
+### cni in kubernetes
