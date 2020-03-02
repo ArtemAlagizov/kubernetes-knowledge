@@ -308,11 +308,11 @@
       "isGateway": true,
       "ipMasq": true,
       "ipam": {
-                "type": "host-local",
-                "subnet": "10.22.0.0/16",
-                "routes": [
-                  { "dst": "0.0.0.0/0"}
-                ]
+        "type": "host-local",
+        "subnet": "10.22.0.0/16",
+        "routes": [
+          { "dst": "0.0.0.0/0"}
+        ]
       }
     }
     ```
