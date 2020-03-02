@@ -224,4 +224,39 @@
   ```
   ip route show default
   ```
-  
+### pod networking
+* no current solution for pod networking => has to be done by us
+* requirements
+  * every pod should have an ip address
+  * every pod should be able to communicate with every other pod in the same node
+  * every pod should be able to communicate with every other pod on other nodes without NAT
+* some solutions for this are => weavworks, flannel
+* custom solution (based on the above)
+  * given a set of nodes on a network
+    * to enable connectivity within a pod
+      * create bridge network on every node
+      * choose ip range and give each node a subnet, 10.44.2.1/24, 10.44.3.1/24
+      * set the ip range for the bridge interfaces
+      * create a script that will assign ip address to a containers
+        ```bash
+        # create virtual cable
+        ip link add veth-red type veth peer name veth-blue
+
+        # attach cable ends to namespaces
+        ip link set veth-red netns red
+        ip link set veth-blue netns blue
+
+        # assign ip addresses in these namespaces
+        ip -n red addr add 192.168.15.1 dev veth-red
+        ip -n blue addr add 192.168.15.2 dev veth-blue
+
+        # bring up the interfaces within the 2 namespaces
+        ip -n red link set veth-red up
+        ip -n blue link set veth-blue up
+        ```
+    * to enable pod-pod connectivty
+      * add entry into routing table of the node 1 to route traffic to internal ip of pod on node 2 through external ip of node 2
+        ```bash
+        # on node1:
+        ip route add <internal-ip-of-pod-on-node2> via <external-ip-of-node-2>
+        ```
