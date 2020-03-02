@@ -280,3 +280,40 @@
             ./net-script.sh add <container> <namespace>
             ```
 ### cni in kubernetes
+* cni service is configured in kubelet service of each node
+  ```bash
+  # kubelet.service file
+  --network-plugin=cni
+  
+  # also by running the command
+  ps -aux | grep kubelet
+  ```
+* cni bin directory contains all the supported cni plugin executables
+  ```bash
+  ls /opt/cni/bin
+  ```
+* cni config directory has list of config files 
+  ```bash
+  # this is where kubelet looks to see which plugin needs to be used
+  # in case of multiple files it will choose in alphabetical order
+  ls /etc/cni/net.d
+  ```
+  * example of config file
+    ```json
+    {
+      "cniVersion": "0.2.0",
+      "name": "mynet",
+      "type": "bridge",
+      "bridge": "cni0",
+      "isGateway": true,
+      "ipMasq": true,
+      "ipam": {
+                "type": "host-local",
+                "subnet": "10.22.0.0/16",
+                "routes": [
+                  { "dst": "0.0.0.0/0"}
+                ]
+      }
+    }
+    ```
+  
