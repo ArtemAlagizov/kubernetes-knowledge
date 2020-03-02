@@ -260,3 +260,12 @@
         # on node1:
         ip route add <internal-ip-of-pod-on-node2> via <external-ip-of-node-2>
         ```
+      * better solution
+        * define all these routes on a router
+        * point all host to use it as a default gateway
+          | network     |gateway     |
+          |:------------|:-----------|
+          |10.244.1.0/24|192.168.1.11|
+          |10.244.2.0/24|192.168.1.12|
+          |10.244.3.0/24|192.168.1.13|        
+          * this way it becomes a big bridge network across nodes (10.244.0.0/16)
