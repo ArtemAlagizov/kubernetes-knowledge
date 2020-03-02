@@ -157,7 +157,7 @@
     ```bash
     docker run --network bridge nginx
     ```
-* docker create virtual cables from bridge network to containers as described above
+* docker creates virtual cables from bridge network to containers as described above
 * docker allows to map ports for accessing a container through docker host
   ```bash
   docker run -p 8080:80 nginx
