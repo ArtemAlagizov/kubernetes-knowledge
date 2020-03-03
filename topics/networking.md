@@ -338,3 +338,7 @@
     ```
     kubectl logs weave-net-5wfwf weave -n kube-system
     ```
+* check ip range used by weave
+  ```
+  ip addr show weave
+  ```
