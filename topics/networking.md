@@ -354,3 +354,18 @@
 * outside world can access pod via service of NodePort type
 * once a service is created it gets handled by kube-proxy
   * kube-proxy creates forwarding rules from service ip:port to pod ip
+* get the range of IP addresses configured for PODs on this cluster
+  ```bash
+  # ipalloc-range here
+  kubectl logs <weave-pod-name> weave -n kube-system  
+  ```
+* get IP Range configured for the services within the cluster
+  ```bash
+   ps -aux | grep kube-api
+   
+   --service-cluster-ip-range=10.96.0.0/12
+  ```
+* get type of proxy is the kube-proxy configured to use
+  ```
+  kubectl logs kube-proxy-ft6n7 -n kube-system
+  ```
