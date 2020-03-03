@@ -319,9 +319,22 @@
     }
     ```
     ```bash
-    isGateway => indicates if bridge network should get an ip address assigned to it so that it can act as a gateway
-    ipMasq => indicates if ip address should be masquaraded
-    ipam => range of ip addresses and routes that will be assigned to pods
-      type => host-local indicates that ip addresses will be managed locally, not remotely
+    # isGateway => indicates if bridge network should get an ip address assigned to it so that it can act as a gateway
+    # ipMasq => indicates if ip address should be masquaraded
+    # ipam => range of ip addresses and routes that will be assigned to pods
+    #   type => host-local indicates that ip addresses will be managed locally, not remotely
     ```
-  
+### cni weave
+* weave agent on every node
+  * agents have information on network topology, pod ip addresses, so on
+  * agents share this information with each other
+  * packets are sent to agents that handle them further
+* deployment
+  * deploy weave agents in pods as daemonset on each node
+    ```
+    kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+    ```
+  * check logs
+    ```
+    kubectl logs weave-net-5wfwf weave -n kube-system
+    ```
