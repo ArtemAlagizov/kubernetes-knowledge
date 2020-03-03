@@ -105,6 +105,25 @@ $ kubectl get deployment kube-d TAB
   ```
   kubectl set image deployment/nginx-deployment <container-name>=nginx:1.9.1 --record
   ```
+* schedule pod on a specific node
+  ```
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: null
+    labels:
+      run: nginx
+    name: nginx
+  spec:
+    nodeName: node03
+    containers:
+    - image: nginx
+      name: nginx
+      resources: {}
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
+  status: {}
+  ```
 ## selectors
   * select all image names from all pods
     ```
