@@ -347,3 +347,10 @@
   kubectl exec -it <pod-name> sh
   # ip route 
   ```
+### service networking
+* services are virtual objects with an ip address
+* services are cluster wide concepts
+* service available within a cluster (type clusterIp)
+* outside world can access pod via service of NodePort type
+* once a service is created it gets handled by kube-proxy
+  * kube-proxy creates forwarding rules from service ip:port to pod ip
