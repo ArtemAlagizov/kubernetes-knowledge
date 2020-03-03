@@ -342,3 +342,8 @@
   ```
   ip addr show weave
   ```
+* get default gateway configured on the pods scheduled on particular node
+  ```
+  kubectl exec -it <pod-name> sh
+  # ip route 
+  ```
