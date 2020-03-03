@@ -318,4 +318,10 @@
       }
     }
     ```
+    ```bash
+    isGateway => indicates if bridge network should get an ip address assigned to it so that it can act as a gateway
+    ipMasq => indicates if ip address should be masquaraded
+    ipam => range of ip addresses and routes that will be assigned to pods
+      type => host-local indicates that ip addresses will be managed locally, not remotely
+    ```
   
