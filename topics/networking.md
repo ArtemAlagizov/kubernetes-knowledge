@@ -1,6 +1,7 @@
 ## networking
 * [linux routing basics](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#linux-routing-basics)
 * [linux dns basics](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#linux-dns-basics)
+* [network namespaces](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#network-namespaces)
 
 ### linux routing basics
   * to see current routes use **route**
