@@ -1,5 +1,5 @@
 ## networking
-[linux routing basics](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/networking.md#linux routing basics)
+[linux routing basics](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/networking.md#linux-routing-basics)
 
 ### linux routing basics
   * to see current routes use **route**
