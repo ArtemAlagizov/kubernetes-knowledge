@@ -373,3 +373,10 @@
   ```
   kubectl logs kube-proxy-ft6n7 -n kube-system
   ```
+### dns in kubernetes
+* services are resolved in the following way
+  ```bash
+  http://<hostname><namespace><type><root>
+  
+  # example: http://web-service.apps.svc.cluster.local
+  ```
