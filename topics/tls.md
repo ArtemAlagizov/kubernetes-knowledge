@@ -1,5 +1,11 @@
 ## tls
-* [procedure](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#procedure)
+* [procedure](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#procedure)
+* [types of certificates](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#types-of-certificates)
+* [certificate creation](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#certificate-creation)
+* [view certificates](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#view-certificates)
+* [check logs](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#check-logs)
+* [certificate api](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#certificate-api)
+* [kube config](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#kube-config)
 
 ### procedure
 * actors
@@ -18,6 +24,8 @@
   * browser fetches server public key and encrypts the symmetric key and sends it to the server
   * server decrypts the message and stores the symmetric key for further communication
   * optionally client can generate a key-pair, verifty it with CA and send it to the server
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
 ### types of certificates
 * root 
   * configured at CA servers
@@ -34,6 +42,7 @@
     * etcd server (etcd.crt, etcd.key)
     * kubelet server (kubelet.crt, kubelet.key)
     
+ [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
  ### certificate creation
  * create certificate and key pair for CA using openssl
    * generate keys 
@@ -73,6 +82,7 @@
       * use naming of system:node:node01
       * also add nodes to GROUP system:group
 
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
 ### view certificates
 * get kube-api server certificates details
   ```
@@ -82,6 +92,8 @@
   * alternative names
   * issuer
   * expiration date
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
 ### check logs
 * natively
   ```
@@ -91,6 +103,8 @@
   ```
   kubectl logs etcd-master
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
 ### certificate api
 * CertificateSigningRequest example file
   ```
@@ -123,6 +137,8 @@
   ```
   kubectl certificate deny agent-smith
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
 ### kube config
 * needed for convenience and to not type every time --server=... --client-key=..., ... to commands like **kubectl get pods**
 * 3 main sections
@@ -165,4 +181,4 @@
       client-key-data: REDACTED
   ```
 
-  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
