@@ -469,4 +469,31 @@
    ```
    not known yet TODO
    ```
+
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
+### ingress
+* layer serving load-balancer built in a cluster that can be configured using native kubernetes primitives
+  * ssl included
+  * still needs to be exposed to the outer world
+* **ingress controller**
+  * deployed solution (nginx, haproxy, traefik)
+    * nginx is deployed as **Deployment** kind
+      ```bash
+    
+      ```
+      * monitors new resources to update nginx configuration accordingly
+        * needs **ServiceAccount** for permission to do so
+          ```bash
+          
+          ```
+    * regular nginx properties (log-path,keep-alive,ssl-protocols) need to be passed in as **ConfigMap** object
+      ```bash
+      ```     
+  * doesn't come by default in a cluster   
+  * **Service** is needed to expose ingress controller to the outer space
+    ```bash
+    
+    ```
+* **ingress resources**
+  * set of rules for ingress
+  * created using definition yaml files
