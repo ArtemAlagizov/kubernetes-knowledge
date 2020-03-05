@@ -408,30 +408,58 @@
   
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### core dns
-  * core dns service is deployed as 2 pods in a cluster (replicaset in a deployment)
-    * the pod runs coredns executable
-    * the pod watches new pods/services being created 
-      * once pod/service created coredns adds a record about it to its database
-  * regular pods point to coredns service in **/etc/resolv.conf** as a nameserver
-    * this is done automatically by kubernetes when pods are created (kubelet does it)
-      ```
-      nameserver 10.96.0.11
-      
-      # search allows to react coredns service by any of the below names
-      search default.svc.cluster.local svc.cluster.local cluster.local
-      ```
-  * core dns requires **Corefile**
-    * contains configured plugins for reporting health, managing metrics, cache, ...
-      ```bash
-      # cat /etc/coredns/Corefile
+* core dns service is deployed as 2 pods in a cluster (replicaset in a deployment)
+  * the pod runs coredns executable
+  * the pod watches new pods/services being created 
+    * once pod/service created coredns adds a record about it to its database
+* regular pods point to coredns service in **/etc/resolv.conf** as a nameserver
+  * this is done automatically by kubernetes when pods are created (kubelet does it)
+    ```
+    nameserver 10.96.0.11
 
-      .:
-      ```
-    * plugin that makes coredns work with kubernetes is named kubernetes
-      * that is where top-level domain name is set (cluster.local)
-      * pods option is responsible for creating pods in the cluster  
-    * any record that dns server cannot solve is forwarded to proxy plugin
-    * **Corefile** is passed in to the pod as configmap object
-      * to modify the config => modify the configmap object
+    # search allows to react coredns service by any of the below names
+    search default.svc.cluster.local svc.cluster.local cluster.local
+    ```
+* core dns requires **Corefile**
+  * contains configured plugins for reporting health, managing metrics, cache, ...
+    ```bash
+    # cat /etc/coredns/Corefile
+
+    .:53 {
+          errors
+          health
+          ready
+          kubernetes cluster.local in-addr.arpa ip6.arpa {
+             pods insecure
+             fallthrough in-addr.arpa ip6.arpa
+             ttl 30
+          }
+          prometheus :9153
+          forward . /etc/resolv.conf
+          cache 30
+          loop
+          reload
+          loadbalance
+      }
+    ```
+  * plugin that makes coredns work with kubernetes is named kubernetes
+    * that is where top-level domain name is set (cluster.local)
+    * pods option is responsible for creating pods in the cluster  
+  * any record that dns server cannot solve is forwarded to proxy plugin
+  * **Corefile** is passed in to the pod as configmap object
+    * to modify the config => modify the configmap object
+ * identify the DNS solution implemented in this cluster
+   ```
+   kubectl get pods -n kube-system
+   ```
+ * get ip of the coredns server that should be configured on pods to resolve services
+   ```bash
+   # cluster ip value in the output of the following command
+   kubectl get service -n kube-system 
+   ```
+ * find is the configuration file located for configuring the coredns service
+   ```
+   kubectl exec <core-dns-pod-name> -n kube-system ps
+   ```
  
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
