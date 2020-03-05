@@ -1,5 +1,8 @@
 
 ## kubeadm
+
+kubeadm is a tool built to provide kubeadm init and kubeadm join as best-practice “fast paths” for creating Kubernetes clusters
+
 * kubeadm init executes all the steps needed to bring up a cluster
   ```
   preflight                    Run pre-flight checks
