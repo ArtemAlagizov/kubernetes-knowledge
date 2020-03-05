@@ -635,9 +635,9 @@
         - {}
     ```
     * [rewrite-target annotation](https://kubernetes.github.io/ingress-nginx/examples/rewrite/)
-* edit ingress resource
-  ```
-  kubectl edit ingress --namespace app-space
-  ```
+  * edit ingress resource
+    ```
+    kubectl edit ingress --namespace app-space
+    ```
 
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
