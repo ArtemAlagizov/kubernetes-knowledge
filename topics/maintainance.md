@@ -24,9 +24,7 @@
   kubeadm upgrade plan
   ```
 * recommended way to upgrade
-  ```
-  ugrade one minor version at a time until the latest stable version
-  ```
+  * upgrade one minor version at a time until the latest stable version
 * upgrade procedure
   * uprade kubeadm tool
     ```
