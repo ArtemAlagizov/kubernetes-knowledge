@@ -35,7 +35,8 @@
     vi /etc/sysctl.conf
     # net.ipv4.ip_forward = 1
     ```
-  [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md)
+  
+  [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### linux dns basics
 * point host to dns server
   ```
@@ -57,7 +58,8 @@
   * ping
   * nslookup => queries dns server
   * dig
-[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md)
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### network namespaces
 * create new network namespace 
   ```
@@ -147,6 +149,8 @@
     # route incoming traffic to the blue namespace
     iptables -t nat -A PREROUTING --dport 80 --to-destination 192.168.15.2:80 -j DNAT
     ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### networking in docker
 * types of network
   * none => no connectivity to/from the container
@@ -191,6 +195,7 @@
            ```
            bridge add 2e34dcf34 /var/run/netns/2e34dcf34
            ```
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### kubernetes cluster networking 
 * requerements for nodes
   * each node must have uniq
@@ -230,6 +235,7 @@
   ```
   ip route show default
   ```
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### pod networking
 * no current solution for pod networking => has to be done by us
 * requirements
@@ -285,6 +291,7 @@
             ```
             ./net-script.sh add <container> <namespace>
             ```
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### cni in kubernetes
 * cni service is configured in kubelet service of each node
   ```bash
@@ -330,6 +337,7 @@
     # ipam => range of ip addresses and routes that will be assigned to pods
     #   type => host-local indicates that ip addresses will be managed locally, not remotely
     ```
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### cni weave
 * weave agent on every node
   * agents have information on network topology, pod ip addresses, so on
@@ -353,6 +361,7 @@
   kubectl exec -it <pod-name> sh
   # ip route 
   ```
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### service networking
 * services are virtual objects with an ip address
 * services are cluster wide concepts
@@ -375,6 +384,7 @@
   ```
   kubectl logs kube-proxy-ft6n7 -n kube-system
   ```
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### dns in kubernetes
 * services are resolved in the following way
   ```bash
@@ -382,3 +392,4 @@
   
   # example: http://web-service.apps.svc.cluster.local
   ```
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
