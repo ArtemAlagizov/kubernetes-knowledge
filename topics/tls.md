@@ -1,4 +1,5 @@
-## TLS
+## tls
+* [procedure](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#procedure)
 
 ### procedure
 * actors
