@@ -10,6 +10,7 @@
 * [service networking](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#service-networking)
 * [dns in kubernetes](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#dns-in-kubernetes)
 * [core dns](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#core-dns)
+* [ingress](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#ingress)
 
 ### linux routing basics
   * to see current routes use **route**
