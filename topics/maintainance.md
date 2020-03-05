@@ -1,5 +1,7 @@
-
 ## maintainance
+
+
+
 * empty the node node01 of all applications and mark it unschedulable (must be forced if node contains pods that are not part of replicaset)
   ```
   kubectl drain node01 --ignore-daemonsets
@@ -12,6 +14,8 @@
   ```
   kubectl uncordon node01
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/maintainance.md#maintainance)
 ### upgrade kubernetes 
 * what is the latest stable version available for upgrade?
   ```
@@ -34,6 +38,8 @@
     ```
     apt install kubelet=1.17.0-00
     ```
+    
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/maintainance.md#maintainance)
 ### backup & restore
 * three things to consider for backup (velero can help to backup a cluster deployment)
   * resources
@@ -77,3 +83,5 @@
      --initial-advertise-peer-urls=https://127.0.0.1:2380 \
      snapshot restore /tmp/snapshot-pre-boot.db
       ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/maintainance.md#maintainance)
