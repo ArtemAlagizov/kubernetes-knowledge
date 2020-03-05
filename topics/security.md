@@ -12,7 +12,7 @@
 * [network policy](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#network-policy)
 
 ### tls
-  see [tls part](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/tls.md)
+  see [tls](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/tls.md)
 ### authentication
 * option 0 (not for production): plain text file
   * create a file containing user credentials
