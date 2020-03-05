@@ -479,21 +479,88 @@
   * deployed solution (nginx, haproxy, traefik)
     * nginx is deployed as **Deployment** kind
       ```bash
-    
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ingress-controller
+        namespace: ingress-space
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            name: nginx-ingress
+        template:
+          metadata:
+            labels:
+              name: nginx-ingress
+          spec:
+            serviceAccountName: ingress-serviceaccount
+            containers:
+              - name: nginx-ingress-controller
+                image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
+                args:
+                  - /nginx-ingress-controller
+                  - --configmap=$(POD_NAMESPACE)/nginx-configuration
+                  - --default-backend-service=app-space/default-http-backend
+                env:
+                  - name: POD_NAME
+                    valueFrom:
+                      fieldRef:
+                        fieldPath: metadata.name
+                  - name: POD_NAMESPACE
+                    valueFrom:
+                      fieldRef:
+                        fieldPath: metadata.namespace
+                ports:
+                  - name: http
+                    containerPort: 80
+                  - name: https
+                    containerPort: 443
       ```
       * monitors new resources to update nginx configuration accordingly
         * needs **ServiceAccount** for permission to do so
           ```bash
           
           ```
+          * create a ServiceAccount
+            ```bash
+            kubectl create serviceaccount ingress-serviceaccount --namespace ingress-space
+            ```
     * regular nginx properties (log-path,keep-alive,ssl-protocols) need to be passed in as **ConfigMap** object
       ```bash
+      
       ```     
+      * create a ConfigMap object
+        ```
+        kubectl create configmap nginx-configuration --namespace ingress-space
+        ```      
   * doesn't come by default in a cluster   
   * **Service** is needed to expose ingress controller to the outer space
     ```bash
-    
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: ingress
+      namespace: ingress-space
+    spec:
+      type: NodePort
+      ports:
+      - port: 80
+        targetPort: 80
+        protocol: TCP
+        nodePort: 30080
+        name: http
+      - port: 443
+        targetPort: 443
+        protocol: TCP
+        name: https
+      selector:
+        name: nginx-ingress
     ```
+    * create Service object
+      ```
+      kubectl expose deployment -n ingress-space ingress-controller --type=NodePort --port=80 --name=ingress --dry-run -o yaml >ingress.yaml
+      ```
 * **ingress resources**
   * set of rules for ingress to route traffic for different domain names of a website such as wear.online-store.com, watch.online-store.com, ...
     * each rule can have a set of paths for the domain
