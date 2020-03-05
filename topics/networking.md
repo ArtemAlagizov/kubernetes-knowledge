@@ -461,5 +461,8 @@
    ```
    kubectl exec <core-dns-pod-name> -n kube-system ps
    ```
- 
+ * redirect the output from pod-0 mysql service nslookup to a file /root/nslookup.out
+   ```
+   kubectl exec -it hr nslookup mysql.payroll > /root/nslookup.out
+   ```
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
