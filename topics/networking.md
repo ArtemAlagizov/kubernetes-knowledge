@@ -520,7 +520,13 @@
       * monitors new resources to update nginx configuration accordingly
         * needs **ServiceAccount** for permission to do so
           ```bash
-          
+          apiVersion: v1
+          kind: ServiceAccount
+          metadata:
+            name: default
+            namespace: default
+          secrets:
+          - name: default-token-6kj5p
           ```
           * create a ServiceAccount
             ```bash
@@ -528,7 +534,11 @@
             ```
     * regular nginx properties (log-path,keep-alive,ssl-protocols) need to be passed in as **ConfigMap** object
       ```bash
-      
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: nginx-configuration
+        namespace: ingress-space
       ```     
       * create a ConfigMap object
         ```
