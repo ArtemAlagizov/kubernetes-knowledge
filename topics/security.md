@@ -1,5 +1,5 @@
 ## security
-* [tls](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#tls)
+* [tls](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/tls.md#tls)
 * [authentication](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#authentication)
 * [node-node communication](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#node-node-communication)
 * [roles](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#roles)
