@@ -9,6 +9,7 @@
 * [cni weave](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#cni-weave)
 * [service networking](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#service-networking)
 * [dns in kubernetes](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#dns-in-kubernetes)
+* [core dns](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#core-dns)
 
 ### linux routing basics
   * to see current routes use **route**
@@ -404,4 +405,27 @@
   ```
   10.244.1.4 => 10-244-1-4
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
+### core dns
+  * core dns service is deployed as 2 pods in a cluster (replicaset in a deployment)
+    * the pod runs coredns executable
+    * the pod watches new pods/services being created 
+      * once pod/service created coredns adds a record about it to its database
+  * regular pods point to coredns service in **/etc/resolv.conf** as a nameserver
+    * this is done automatically by kubernetes when pods are created (kubelet does it)
+  * core dns requires **Corefile**
+    * contains configured plugins for reporting health, managing metrics, cache, ...
+      ```bash
+      # cat /etc/coredns/Corefile
+
+      .:
+      ```
+    * plugin that makes coredns work with kubernetes is named kubernetes
+      * that is where top-level domain name is set (cluster.local)
+      * pods option is responsible for creating pods in the cluster  
+    * any record that dns server cannot solve is forwarded to proxy plugin
+    * **Corefile** is passed in to the pod as configmap object
+      * to modify the config => modify the configmap object
+ 
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
