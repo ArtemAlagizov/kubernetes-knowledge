@@ -1,7 +1,9 @@
 ## maintainance
+* [node draining/conrdoning](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/maintainance.md#node draining/conrdoning)
+* [upgrade kubernetes](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/maintainance.md#upgrade-kubernetes)
+* [backup/restore](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/maintainance.md#backuprestore)
 
-
-
+### node draining/conrdoning
 * empty the node node01 of all applications and mark it unschedulable (must be forced if node contains pods that are not part of replicaset)
   ```
   kubectl drain node01 --ignore-daemonsets
@@ -40,7 +42,7 @@
     ```
     
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/maintainance.md#maintainance)
-### backup & restore
+### backup/restore
 * three things to consider for backup (velero can help to backup a cluster deployment)
   * resources
     * store on github    
