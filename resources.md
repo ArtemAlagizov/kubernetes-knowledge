@@ -6,3 +6,4 @@
 * [nvidia-gpu-operator-simplifying-gpu-management-in-kubernetes](https://devblogs.nvidia.com/nvidia-gpu-operator-simplifying-gpu-management-in-kubernetes/)
 * [running-gpu-accelerated-kubernetes-workloads-on-p3-and-p2-ec2-instances-with-amazon-eks](https://aws.amazon.com/blogs/compute/running-gpu-accelerated-kubernetes-workloads-on-p3-and-p2-ec2-instances-with-amazon-eks/)
 * [auto-scaling-kubernetes-clusters-based-on-gpu-metrics](https://www.alibabacloud.com/blog/auto-scaling-kubernetes-clusters-based-on-gpu-metrics_594314)
+* [kubernetes-ckad-weekly-challenge](https://codeburst.io/kubernetes-ckad-weekly-challenge-7-migrate-a-service-68c7af41c8df)
