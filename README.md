@@ -1,5 +1,7 @@
 # kubernetes-knowledge
 
+![kubernetes logo](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/images/80px-kubernetes_logo.png)
+
 the repo contains practical set of facts/useful commands to start with kubernetes 1.17
 
 * [kubeadm tool](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/kubeadm.md)
