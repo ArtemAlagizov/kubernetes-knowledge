@@ -1,4 +1,9 @@
 ## lifecycle management
+* [deployment update](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#deployment-update)
+* [commands and agruments](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#commands-and-agruments)
+* [env variables](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#env-variables)
+
+### deployment update
 * two types of updates (StrategyType in deployment description)
   * recreate
     * kill all the deployments and recreate them, results in app downtime
@@ -77,6 +82,8 @@
     replicas: 4
     updatedReplicas: 4
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#lifecycle-management)
 ### commands and agruments
 * in pod definition file
   * **command** corresponds to **entrypoint** in Dockerfile (run at startup of container)
@@ -94,6 +101,8 @@
       command: ["sleep"]
       args: ["5000"]  
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#lifecycle-management)
 ### env variables
 * types of env variables
   * key-value
@@ -208,3 +217,5 @@
       - name: HOST_IP
         value: 172.19.234.73
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#lifecycle-management)
