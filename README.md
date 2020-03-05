@@ -1,6 +1,6 @@
 # kubernetes-knowledge
 
-![kubernetes logo](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/assets/80px-kubernetes_logo.png)
+![kubernetes logo](https://raw.githubusercontent.com/ArtemAlagizov/kubernetes-knowledge/master/assets/80px-kubernetes_logo.png)
 
 the repo contains practical set of facts/useful commands to start with kubernetes 1.17
 
