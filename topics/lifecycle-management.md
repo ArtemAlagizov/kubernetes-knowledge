@@ -80,7 +80,7 @@
 ### commands and agruments
 * in pod definition file
   * **command** corresponds to **entrypoint** in Dockerfile (run at startup of container)
-  * **args** corresponds to **cmd** in Dockerfile default param passed to the entrypoint)
+  * **args** corresponds to **cmd** in Dockerfile (default param passed to the entrypoint)
 * example file
   ```
   apiVersion: v1
