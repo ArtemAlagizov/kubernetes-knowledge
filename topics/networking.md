@@ -414,6 +414,12 @@
       * once pod/service created coredns adds a record about it to its database
   * regular pods point to coredns service in **/etc/resolv.conf** as a nameserver
     * this is done automatically by kubernetes when pods are created (kubelet does it)
+      ```
+      nameserver 10.96.0.11
+      
+      # search allows to react coredns service by any of the below names
+      search default.svc.cluster.local svc.cluster.local cluster.local
+      ```
   * core dns requires **Corefile**
     * contains configured plugins for reporting health, managing metrics, cache, ...
       ```bash
