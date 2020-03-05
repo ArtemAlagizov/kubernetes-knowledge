@@ -495,5 +495,69 @@
     
     ```
 * **ingress resources**
-  * set of rules for ingress
-  * created using definition yaml files
+  * set of rules for ingress to route traffic for different domain names of a website such as wear.online-store.com, watch.online-store.com, ...
+    * each rule can have a set of paths for the domain
+      * if rules don't cover path traffic goes to default backend
+  * 1 rule 2 paths  
+    ```
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"      
+      name: ingress-wear-watch
+      namespace: app-space
+      resourceVersion: "1693"
+    spec:
+      rules:
+      - http:
+          paths:
+          - backend:
+              serviceName: wear-service
+              servicePort: 8080
+            path: /wear
+          - backend:
+              serviceName: video-service
+              servicePort: 8080
+            path: /stream
+    status:
+      loadBalancer:
+        ingress:
+        - {}
+    ```    
+    or 2 rules 1 path
+    ```
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"      
+      name: ingress-wear-watch
+      namespace: app-space
+      resourceVersion: "1693"
+    spec:
+      rules:
+      - http:
+          host: watch.online-store.com
+          paths:
+          - backend:
+              serviceName: video-service
+              servicePort: 8080
+      - http:
+          host: wear.online-store.com
+          paths:
+          - backend:
+              serviceName: wear-service
+              servicePort: 8080
+    status:
+      loadBalancer:
+        ingress:
+        - {}
+    ```
+    * [rewrite-target annotation](https://kubernetes.github.io/ingress-nginx/examples/rewrite/)
+* edit ingress resource
+  ```
+  kubectl edit ingress --namespace app-space
+  ```
