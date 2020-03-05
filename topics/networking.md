@@ -35,6 +35,7 @@
     vi /etc/sysctl.conf
     # net.ipv4.ip_forward = 1
     ```
+  [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md)
 ### linux dns basics
 * point host to dns server
   ```
@@ -56,6 +57,7 @@
   * ping
   * nslookup => queries dns server
   * dig
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md)
 ### network namespaces
 * create new network namespace 
   ```
