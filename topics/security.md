@@ -85,14 +85,20 @@
     ```
     curl -v -k https://localhost:6443/api/v1/pods -u "user1:password123"
     ```
+    
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### node-node communication
 * communication between nodes must be encrypted
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### roles
 * identify the authorization modes configured on the cluster
   ```bash
   kubectl describe pod kube-apiserver-master -n kube-system
   #check --authorization-mode
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### role binding 
 * maps roles to users
 * check current role permissions
@@ -130,14 +136,19 @@
     name: developer
     apiGroup: rbac.authorization.k8s.io
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### namespaced and not namespaced resources
 * get list of namespaced/not namespaced resources run
   ```
   kubectl api-resources --namespaced=true
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### cluster roles
 * identify the authorization modes configured on the cluster wide scope
 
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### cluster role binding 
 * maps cluster roles to users
 * example of a clusterrole and clusterrolebinding for access to nodes
@@ -168,6 +179,8 @@
     name: storage-admin
     apiGroup: rbac.authorization.k8s.io
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### image security
 * create a secret object with the credentials required to access the registry
   ```
@@ -226,6 +239,8 @@
         terminationGracePeriodSeconds: 30
   status: {}  
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### security contexts
 * get what is the user used to execute the sleep process within the 'ubuntu-sleeper' pod?
   ```
@@ -249,6 +264,8 @@
         add: ["SYS_TIME"] <= to be able to set time within the container
   ```
 * user ID defined in the securityContext of the container overrides the User ID in the POD
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
 ### network policy
 * ingress => traffic into a pod, egress => traffic to ouside of a pod
 * policy example 
@@ -308,3 +325,5 @@
       - protocol: TCP
         port: 8080
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/security.md#security)
