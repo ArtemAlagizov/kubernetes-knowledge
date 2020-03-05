@@ -281,3 +281,5 @@
        name: nginx
     schedulerName: my-scheduler
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
