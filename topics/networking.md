@@ -399,4 +399,9 @@
   
   # example: http://web-service.apps.svc.cluster.local
   ```
+  
+* for pods kubernetes creates hostnames by replacing dots with dashes in the ip address of the pod
+  ```
+  10.244.1.4 => 10-244-1-4
+  ```
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
