@@ -1,6 +1,6 @@
 # kubernetes-knowledge
 
-the repo contains practical set of facts/useful commands to start with kubernetes 
+the repo contains practical set of facts/useful commands to start with kubernetes 1.17
 
 * [kubeadm tool](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/kubeadm.md)
 * [lifecycle-management](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md)
