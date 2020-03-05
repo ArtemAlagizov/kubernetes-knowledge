@@ -55,6 +55,7 @@
   kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run -o yaml
   ```
   * _NOTE_: This will not use the pods labels as selectors
+  
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### labels/selectors
 * filter out pods based on labels
@@ -69,9 +70,13 @@
   ```
   kubectl label node node01 color=blue
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### annotations
 * used for extra meta information like
   * integration info like version 
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### taint/tolerations 
     description: filter out which pods can be scheduled on a node, 
     usecases: different teams work on different nodes, and pods need to be separated respectively, 
@@ -103,6 +108,8 @@
       effect: NoSchedule
       operator: Equal
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### node affinity
     description: choose which pods can be scheduled on a node, 
     usecases: different teams work on different nodes, and pods need to be separated  respectively, 
@@ -136,6 +143,8 @@
                 - key: node-role.kubernetes.io/master
                   operator: Exists
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### daemonset 
     description: run a pod accross all nodes, 
     usecases: log collection, monitoring
@@ -184,6 +193,8 @@
           hostPath:
             path: /var/lib/docker/containers
   ```
+  
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### static pods
     used to create and maintain kubernetes administration plane components
 * get all the static pods:
@@ -199,6 +210,8 @@
   ```
   edit a definition at /etc/kubernetes/manifests/.*.yaml
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### multiple schedulers
     it is possible to use multiple schedulers to schedule pods
 * get image used to deploy the kubernetes scheduler
