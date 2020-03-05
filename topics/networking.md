@@ -43,7 +43,7 @@
     # net.ipv4.ip_forward = 1
     ```
   
-  [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
 ### linux dns basics
 * point host to dns server
   ```
