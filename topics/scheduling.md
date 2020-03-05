@@ -1,8 +1,8 @@
 ## scheduling
 * [creation of resources](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#creation-of-resources)
-* [labels/selectors](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#labels-selectors)
+* [labels/selectors](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#labelsselectors)
 * [annotations](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#annotations)
-* [taint/tolerations ](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#taint-tolerations)
+* [taint/tolerations ](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#tainttolerations)
 * [node affinity](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#node-affinity)
 * [daemonset](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#daemonset)
 * [static pods](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#static-pods)
@@ -55,7 +55,7 @@
   kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run -o yaml
   ```
   * _NOTE_: This will not use the pods labels as selectors
-
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#scheduling)
 ### labels/selectors
 * filter out pods based on labels
   ```
