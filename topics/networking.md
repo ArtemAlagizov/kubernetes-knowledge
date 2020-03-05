@@ -465,4 +465,8 @@
    ```
    kubectl exec -it hr nslookup mysql.payroll > /root/nslookup.out
    ```
+ * list dns records of coredns
+   ```
+   not known yet TODO
+   ```
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
