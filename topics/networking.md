@@ -638,3 +638,5 @@
   ```
   kubectl edit ingress --namespace app-space
   ```
+
+[back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/networking.md#networking)
