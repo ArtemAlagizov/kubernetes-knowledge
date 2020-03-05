@@ -1,12 +1,12 @@
 ## scheduling
-* [creation of resources](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#creation-of-resources)
-* [labels/selectors](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#labels-selectors)
-* [annotations](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#annotations)
-* [taint/tolerations ](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#taint-tolerations)
-* [node affinity](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#node-affinity)
-* [daemonset](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#daemonset)
-* [static pods](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#static-pods)
-* [multiple schedulers](https://github.com/ArtemAlagizov/kubernetes-knowledge/edit/master/topics/scheduling.md#multiple-schedulers)
+* [creation of resources](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#creation-of-resources)
+* [labels/selectors](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#labels-selectors)
+* [annotations](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#annotations)
+* [taint/tolerations ](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#taint-tolerations)
+* [node affinity](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#node-affinity)
+* [daemonset](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#daemonset)
+* [static pods](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#static-pods)
+* [multiple schedulers](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/scheduling.md#multiple-schedulers)
 
 ### creation of resources:
 * create an NGINX Pod: 
