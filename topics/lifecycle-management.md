@@ -1,6 +1,6 @@
 ## lifecycle management
 * [deployment update](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#deployment-update)
-* [commands and agruments](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#commands-and-agruments)
+* [commands and arguments](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#commands-and-arguments)
 * [env variables](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#env-variables)
 
 ### deployment update
@@ -84,7 +84,7 @@
   ```
 
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#lifecycle-management)
-### commands and agruments
+### commands and arguments
 * in pod definition file
   * **command** corresponds to **entrypoint** in Dockerfile (run at startup of container)
   * **args** corresponds to **cmd** in Dockerfile (default param passed to the entrypoint)
