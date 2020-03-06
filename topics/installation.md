@@ -11,3 +11,12 @@
 * virtual or physical machines
 * minimum of 4 nodes cluster (m3.medium on aws)
 * master nodes preferably shouldn't host workloads (taint)
+
+### installation options
+* minikube
+  * deploys VMs
+  * single node cluster
+* kubeadm
+  * requires VMs to be ready
+  * single/multi node cluster
+  
