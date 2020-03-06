@@ -20,3 +20,15 @@
   * requires VMs to be ready
   * single/multi node cluster
   
+### hosted vs. tunable solutions
+* hosted
+  * managed kubernetes cluster
+    * EKS
+    * GKE
+    * openshift online
+* tunable
+  * scripted deployment/management of kubernetes cluster, makes it easy to deploy kubernetes cluster privately within an organization
+    * openshift
+    * cloud foundry container runtime
+    * vmware cloud pks
+    * vargant
