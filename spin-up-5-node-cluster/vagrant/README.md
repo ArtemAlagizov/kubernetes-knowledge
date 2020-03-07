@@ -8,17 +8,17 @@
 
 ### steps
 #### provision VMs
-```bash
-cd spin-up-5-node-cluster/vagrant
-vargant up
-```
-#### install tools to perform administrative tasks, such as creating certificates, kubeconfig files and distributing them to the different VMs
-* generate ssh key pair for master-1
   ```bash
-  # generate key pair for master-1
+  cd spin-up-5-node-cluster/vagrant
+  vargant up
+  ```
+#### install tools to perform administrative tasks, such as creating certificates, kubeconfig files and distributing them to the different VMs
+* as an example it is done on master-1
+* generate ssh key pair 
+  ```bash
   ssh-keygen
   ```
-* distribute it to other nodes
+* distribute it to other nodes to easily ssh/scp to other nodes
   ```
   vargant@master-1:~$ ssh master-2
   cat >> ~/.ssh/authorized_keys <<EOF
@@ -34,3 +34,25 @@ vargant up
   # verify installation
   kubectl version --client
   ```
+#### provision a Certificate Authority that can be used to sign additional TLS certificates
+* create a CA certificate, then generate a Certificate Signing Request and use it to create a private key
+  ```
+  # remove the following line at /etc/ssl/openssl.conf
+  RANDFILE                = $ENV::HOME/.rnd
+  
+  openssl genrsa -out ca.key 2048
+  openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr
+  openssl x509 -req -in ca.csr -signkey ca.key -CAcreateserial  -out ca.crt -days 1000
+  ```
+* generate client and server certificates for each Kubernetes component and a client certificate for the Kubernetes admin user
+  * generate the admin client certificate and private key
+    ```bash
+    # generate private key for admin user
+    openssl genrsa -out admin.key 2048
+
+    # generate CSR for admin user
+    openssl req -new -key admin.key -subj "/CN=admin/O=system:masters" -out admin.csr
+
+    # sign certificate for admin user using CA servers private key
+    openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out admin.crt -days 1000
+    ```
