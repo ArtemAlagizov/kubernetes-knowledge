@@ -84,6 +84,22 @@
   * it is recommended to have odd number of master nodes in a cluster
 * etcd installation
   ```
-  
+  TODO
   ```
-  
+* etcdctl
+  * set version
+    ```
+    export ETCDCTL_API=3
+    ```
+  * write data
+    ```
+    etcdctl put name jimmy
+    ```
+  * read data
+    ```
+    etcdctl get name
+    ```
+  * get all the keys
+    ```
+    etcdctl get / --prefix --keys-only
+    ```
