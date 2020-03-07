@@ -1,6 +1,6 @@
 ## spin up 5 node cluster locally [based on [this](https://github.com/mmumshad/kubernetes-the-hard-way)]
 ### setup
-2 masters, 2 workers, 1 loadbalancer
+2 masters, 2 workers, 1 loadbalancer in front of the masters
 
 ### prerequisites
   * virtual box installed
