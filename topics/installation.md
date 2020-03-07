@@ -60,7 +60,7 @@
 ### etcd
 * etcd => distributed reliable key-value store that is simple, secure and fast
 * "write" is done by etcd cluster leader
-  * leader election done with RAFT algorithm
+  * leader election done with [RAFT](https://raft.github.io/) algorithm
     * after a random time a node sends request to other nodes for permission to become the leader (starts election)
     * after getting approvals he becomes the leader
     * the leader sends notifications to other nodes periodically that he is still the leader
@@ -82,3 +82,8 @@
       * that is why recommended minimum is 3 nodes
         * gives fault tolerance of at least 1 node (number of nodes that you can afford to loose while keeping the cluster alive)
   * it is recommended to have odd number of master nodes in a cluster
+* etcd installation
+  ```
+  
+  ```
+  
