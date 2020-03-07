@@ -75,3 +75,10 @@
   * "write" is considered successful only when majority nodes are notified of the "write"
   * quorum = floor(n/2 + 1)
     * minimum number of nodes that should be online for a cluster to function properly
+    * for 1 node quorum is 1
+      * if it goes down everything is lost
+    * for 2 nodes quorum is 2
+      * if 1 fails "writes" will not be processed as there is no quorum
+      * that is why recommended minimum is 3 nodes
+        * gives fault tolerance of at least 1 node (number of nodes that you can afford to loose while keeping the cluster alive)
+  * it is recommended to have odd number of master nodes in a cluster
