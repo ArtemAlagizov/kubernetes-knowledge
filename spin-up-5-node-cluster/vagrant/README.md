@@ -22,7 +22,7 @@
   ```
   vargant@master-1:~$ ssh master-2
   cat >> ~/.ssh/authorized_keys <<EOF
-  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD......8+08b vagrant@master-1
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3DTnFRfC8D7jWwg95ppVYKeqQgYRinjLPDfp5egx3/GinXe7CJtJz3vpNEnta3xPlc27aJiNWtkrjfj6CUUL4NcZYRe6erTHKeZ+nKBNLTa80AmYXtUkwpTAcnaTeh7zX9vemTK/UxpfqcLsILmIyJ6D72J38ZUjeMkhxpxLjQBD4yDkzGl0sbZDiHAnudHrp5Sk gU2y6VT+vfuZBS9aHyzmPN1SsptK2rbdob+hwqe2UqLzKBQvuLjXWCaO4mknEzt3CF5GA2YTO6DogZSL3+rLEZw3OV428DhE4kOwiTHPDG5b2ccF4rE7q4TcLPvkxkJU2/n03+Q3zRbLdIB6b vagrant@master-1
   EOF
   ```
 * install kubectl on master-1
