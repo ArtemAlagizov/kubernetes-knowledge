@@ -36,11 +36,12 @@
   ```
 #### provision a Certificate Authority that can be used to sign additional tls certificates
 * on master-1
+  * to be able to generate a Certificate Signing Request remove the following line at /etc/ssl/openssl.conf
+    ```
+    RANDFILE                = $ENV::HOME/.rnd
+    ```
   * create a CA certificate, then generate a Certificate Signing Request and use it to create a private key
     ```
-    # remove the following line at /etc/ssl/openssl.conf
-    RANDFILE                = $ENV::HOME/.rnd
-
     openssl genrsa -out ca.key 2048
     openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr
     openssl x509 -req -in ca.csr -signkey ca.key -CAcreateserial  -out ca.crt -days 1000
