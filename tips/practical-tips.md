@@ -124,6 +124,10 @@ $ kubectl get deployment kube-d TAB
     restartPolicy: Always
   status: {}
   ```
+* see logs for a service
+  ```
+  sudo journalctl -u kube-controller-manager.service -f
+  ```
 ## selectors
   * select all image names from all pods
     ```
