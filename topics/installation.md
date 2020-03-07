@@ -54,4 +54,24 @@
       ```
       kube-apiserver --etcd-servers=https://10.240.0.10:2379,https://10.40.0.11:2379
       ```
-    * kube-api server can read/write to any of the etcd servers
+    * kube-api server can read/write to any of the etcd servers, but write will be delegated to the node that is responsible for writing
+      * responsible node is elected through leader-election process
+    
+### etcd
+* etcd => distributed reliable key-value store that is simple, secure and fast
+* "write" is done by etcd cluster leader
+  * leader election done with RAFT algorithm
+    * after a random time a node sends request to other nodes for permission to become the leader (starts election)
+    * after getting approvals he becomes the leader
+    * the leader sends notifications to other nodes periodically that he is still the leader
+    * in case there is no notification in time the re-election starts amongst the rest of the nodes
+    * questions
+       * what happens if the old leader comes back online
+         * leaders can step down if there is a better leader present (majority votes)
+         * when coming online node is in the "follower" state
+       * what happens with network partition
+         * each network will elect leader
+         * in case of network merge one leader will step down based on majority votes
+  * "write" is considered successful only when majority nodes are notified of the "write"
+  * quorum = floor(n/2 + 1)
+    * minimum number of nodes that should be online for a cluster to function properly
