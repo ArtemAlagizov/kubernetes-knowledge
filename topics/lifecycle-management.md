@@ -4,7 +4,7 @@
 * [env variables](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#env-variables)
 
 ### deployment update
-* two types of updates (StrategyType in deployment description)
+* there are two types of updates (StrategyType in deployment description)
   * recreate
     * kill all the deployments and recreate them, results in app downtime
   * rolling updates
@@ -21,13 +21,6 @@
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "4"
-    creationTimestamp: "2020-02-26T07:15:11Z"
-    generation: 4
-    name: frontend
-    namespace: default
-    resourceVersion: "2513"
-    selfLink: /apis/apps/v1/namespaces/default/deployments/frontend
-    uid: 9e4a7177-9edc-4595-9161-3dd5a244cb02
   spec:
     minReadySeconds: 20
     progressDeadlineSeconds: 600
@@ -64,23 +57,6 @@
         terminationGracePeriodSeconds: 30
   status:
     availableReplicas: 4
-    conditions:
-    - lastTransitionTime: "2020-02-26T07:15:59Z"
-      lastUpdateTime: "2020-02-26T07:15:59Z"
-      message: Deployment has minimum availability.
-      reason: MinimumReplicasAvailable
-      status: "True"
-      type: Available
-    - lastTransitionTime: "2020-02-26T07:15:11Z"
-      lastUpdateTime: "2020-02-26T07:34:39Z"
-      message: ReplicaSet "frontend-84bb97f469" has successfully progressed.
-      reason: NewReplicaSetAvailable
-      status: "True"
-      type: Progressing
-    observedGeneration: 4
-    readyReplicas: 4
-    replicas: 4
-    updatedReplicas: 4
   ```
 
 [back to the top](https://github.com/ArtemAlagizov/kubernetes-knowledge/blob/master/topics/lifecycle-management.md#lifecycle-management)
