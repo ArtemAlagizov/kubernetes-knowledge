@@ -51,6 +51,12 @@ kubeadm is a tool built to provide kubeadm init and kubeadm join as best-practic
    # run controller-manager sub-step from control-plane step
    kubeadm init phase control-plane controller-manager 
    ```
+ * to start using cluster after running kubeadm init create kubeconfig
+   ```
+   mkdir -p $HOME/.kube
+   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   ```
  * reset a cluster
    ```bash
    # kill all the resources
