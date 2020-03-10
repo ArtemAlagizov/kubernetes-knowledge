@@ -8,7 +8,10 @@
 * set it to /etc/kubernetes/manifests
 ### create a user  with permissions to update pods in a namespace
 * create csr object
-* cat user.csr | base 64 | tr -d '\n' to get base64 representaton of csr
+  * get base64 representaton of csr
+    ```
+    cat user.csr | base 64 | tr -d '\n' 
+    ```
 * create role
 * create role-binding
 ### check dns resolution of pod and service
