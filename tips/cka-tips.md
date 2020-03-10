@@ -22,3 +22,12 @@
   kubectl run --generator=run-pod/v1 nslookup --image:busybox:1.28 --rm -it -- nslookup <service-name> > nginx.svc
   kubectl run --generator=run-pod/v1 nslookup --image:busybox:1.28 --rm -it -- nslookup <dashed-pod-ip>.<namespace>.pod > nginx.pod
   ```
+### create deployment, apply rolling update, record it
+* create deployment
+  ```
+  kubectl create deployment --image=nginx
+  ```
+* apply roling update
+  ```
+  kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1 --record
+  ```
