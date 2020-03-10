@@ -16,7 +16,16 @@
 * create role-binding
 ### check dns resolution of pod and service
 * create pod
+  ```
+  kubectl run --generator=run-pod/v1 nginx --image=nginx
+  ```
 * expose pod
+  ```bash
+  kubectl expose pod nginx --port=80 --name nginx-service --dry-run -o yaml > nginx.service.yaml
+  
+  # specify nodePort afterwards and create the service
+  kubectl apply -f nginx.service.yaml
+  ```
 * run the following to check dns
   ```
   kubectl run --generator=run-pod/v1 nslookup --image:busybox:1.28 --rm -it -- nslookup <service-name> > nginx.svc
