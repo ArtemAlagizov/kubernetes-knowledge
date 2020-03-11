@@ -40,3 +40,46 @@
   ```
   kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1 --record
   ```
+### create serviceaccount that has access to list all persistentvolumes
+* create service account
+  ```
+  kubectl create serviceaacount pvviewer
+  ```
+* create cluster role to list persistent volumes
+  ```
+  kubectl create clusterrole pvviewer-role --resource=persistentvolumes --verb=list
+  ```
+* create cluster role binding
+  ```
+  kubectl create clusterrolebinding pvviewr-role-binding --clusterrole=pvviewer-role --serviceaccount=default:pvviwer
+  ```
+* specify service account in a pod
+  ```
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: nginx
+  spec:
+    containers:
+    - image: nginx
+      name: nginx
+      volumeMounts:
+      - mountPath: /var/run/secrets/tokens
+        name: vault-token
+    serviceAccountName: build-robot
+  ```
+* verify
+  ```bash
+  kubectl describe pod nginx
+  
+  ...
+  Volumes:
+    pvviewer-token-6m8n9:
+      Type:        Secret (a volume populated by a Secret)
+      SecretName:  build-robot-token-6m8n9 # <= this indicates correct use of the service account
+      Optional:    false
+  ```
+### list all internal ip addresses of nodes with node names
+  ```
+  kubectl get nodes -o jsonpath='{range.items[*]} {.status.addresses[?(@.type=="InternalIP")].address} of {.metadata.name}'
+  ```
