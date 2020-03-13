@@ -83,3 +83,28 @@
   ```
   kubectl get nodes -o jsonpath='{range.items[*]} {.status.addresses[?(@.type=="InternalIP")].address} of {.metadata.name}'
   ```
+### allow incoming connections from all pods to a pod without modifying existing eployments
+* create an ingress network policy
+  ```
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: ingress-to-nptest
+  spec:
+    podSelector:
+      matchLabels:
+        run: np-test-1
+    ingress:
+    - from:
+      - podSelector: {}
+      ports:
+      - protocol: TCP
+        port: 80
+  ```
+* verify 
+  ```bash
+  kubectl run --generator=run-pod/v1 busybox --image=busybox --rm -it -- sh
+  
+  # inside the container
+  wget --spider --timeout=1 np-test-service
+  ```
