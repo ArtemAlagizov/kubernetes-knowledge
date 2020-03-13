@@ -83,7 +83,7 @@
   ```
   kubectl get nodes -o jsonpath='{range.items[*]} {.status.addresses[?(@.type=="InternalIP")].address} of {.metadata.name}'
   ```
-### allow incoming connections from all pods to a pod without modifying existing eployments
+### allow incoming connections from all pods to a pod without modifying existing deployments
 * create an ingress network policy
   ```
   apiVersion: networking.k8s.io/v1
