@@ -108,3 +108,71 @@
   # inside the container
   wget --spider --timeout=1 np-test-service
   ```
+### taint node with key:env_type, value:production and effect:NoSchedule, create pod woth tolerations to run on this node
+* taint node
+  ```
+  kubectl taint node node01 env_type=production:NoSchedule
+  ```
+* create matching toleration for pod
+  ```
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: null
+    labels:
+      run: prod-redis
+    name: prod-redis
+  spec:
+    containers:
+    - image: redis:alpine
+      imagePullPolicy: IfNotPresent
+      name: prod-redis
+      resources: {}
+    tolerations:
+    - key: "env_type"
+      operator: "Equal"
+      value: "production"
+      effect: "NoSchedule"
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
+  status: {}
+  ```
+* verify
+  ```
+  kubectl get pod -o wide
+  ```
+## create pod with labels and in hr namespace
+  ```bash
+  # create namespace
+  kubectl create namespace hr
+  
+  # create pod 
+  kubectl run --generator=run-pod/v1 hr-pod --image=redis:alpine --labels=environment=production,tier=frontend --dry-run -o yaml > 7-hr-pod.yaml
+  
+  # add namespace to the pod metadata
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: null
+    labels:
+      environment: production
+      tier: frontend
+    name: hr-pod
+    namespace: hr
+  spec:
+    containers:
+    - image: redis:alpine
+      imagePullPolicy: IfNotPresent
+      name: hr-pod
+      resources: {}
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
+  status: {}
+  
+  # deploy pod
+  kubectl apply -f 7-hr-pod.yaml
+  ```
+### fix kubeconfig file
+  ```bash
+  # verify that host and port for kube-apiserver are correct
+  ```
