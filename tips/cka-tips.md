@@ -199,12 +199,14 @@
   ```
 ### upgrade the current version of kubernetes from 1.16 to 1.17.0 exactly using the kubeadm utility. make sure that the upgrade is carried out one node at a time starting with the master node. to minimize downtime, the deployment gold-nginx should be rescheduled on an alternate node before upgrading each node
 * master node
-  ```
+  ```bash
   kubectl drain node master --ignore-daemonsets
   apt-get install kubeadm=1.17.0-00
   kubeadm  upgrade plan v1.17.0
   kubeadm  upgrade apply v1.17.0
   apt-get install kubelet=1.17.0-00
+  
+  # make master node schedulable
   kubectl uncordon master
   kubectl drain node01 --ignore-daemonsets
   ```
