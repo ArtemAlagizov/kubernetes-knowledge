@@ -176,9 +176,24 @@
   ```bash
   # verify that host and port for kube-apiserver are correct
   kubectl cluster-info --kubeconfig=/root/super.kubeconfig
+  
+  # update the config file
   ...
   clusters:
   - cluster:
       server: https://172.17.0.14:6443
   ...
+  
+  # verify
+  kubectl cluster-info --kubeconfig=/root/super.kubeconfig
+  # should show correct info now
+  ```
+### troubleshoot deployment not scaling after scale command
+* check control plane pods 
+  ```
+  kubectl get pods -n kube-system
+  ```
+* fix any issues with static control pods
+  ```
+  cd /etc/kubernetes/manifests
   ```
