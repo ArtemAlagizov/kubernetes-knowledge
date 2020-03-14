@@ -223,7 +223,7 @@
   # make sure this is scheduled on master node
   kubectl get pods -o wide | grep gold
   ```
-### Print the names of all deployments in the admin2406 namespace in the following format: DEPLOYMENT CONTAINER_IMAGE READY_REPLICAS NAMESPACE \n \<deployment name\> \<container image used\> \<ready replica count\> \<Namespace\>. the data should be sorted by the increasing order of the deployment name
+### print the names of all deployments in the admin2406 namespace in the following format: DEPLOYMENT CONTAINER_IMAGE READY_REPLICAS NAMESPACE \n \<deployment name\> \<container image used\> \<ready replica count\> \<Namespace\>. the data should be sorted by the increasing order of the deployment name
 ```
 kubectl -n admin2406 get deployment -o custom-columns=DEPLOYMENT:.metadata.name,CONTAINER_IMAGE:.spec.template.spec.containers[].image,READY_REPLICAS:.status.readyReplicas,NAMESPACE:.metadata.namespace --sort-by=.metadata.name > /opt/admin2406_data
 ```
