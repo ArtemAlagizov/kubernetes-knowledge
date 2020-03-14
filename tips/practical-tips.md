@@ -14,7 +14,23 @@ alias ksvc="kubectl get --all-namespaces svc -o json | jq -r '.items[] | [.metad
 # shortcuts for frequent kubernetes commands
 alias kpods="kubectl get po"
 alias kinspect="kubectl describe"
+
+# function to enter a pod container or run a command in a pod 
 function krun() { name=$1; shift; image=$1; shift; kubectl run -it --generator=run-pod/v1 --image $image $name -- $@; }
+# usage
+krun nginx-pod nginx bash
+krun nginx-pod nginx sleep 4800
+
+# function to create yaml file for pods provided pod name and image
+function krd() { name=$1; shift; image=$1; shift; kubectl run --dry-run -o yaml --generator=run-pod/v1 --image $image $name; }
+# usage
+krd nginx-pod nginx:alpine > nginx-pod.yaml
+
+# function to apply created yaml files
+function ka() { kubectl apply -f $@; }
+# usage
+ka nginx-pod.yaml
+
 function klogs() { kubectl logs $*;}
 function kexec(){ pod=$1; shift; kubectl exec -it $pod -- $@; }
 ```
