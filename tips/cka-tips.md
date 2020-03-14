@@ -212,7 +212,7 @@
   ```
   apt-get install kubeadm=1.17.0-00
   kubeadm upgrade node --kubelet-version v1.17.0
-  apt-get install kubeket=1.17.0-00
+  apt-get install kubelet=1.17.0-00
   ```
 * master
   ```bash
