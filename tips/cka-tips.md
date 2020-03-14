@@ -141,7 +141,7 @@
   ```
   kubectl get pod -o wide
   ```
-## create pod with labels and in hr namespace
+### create pod with labels and in hr namespace
   ```bash
   # create namespace
   kubectl create namespace hr
@@ -175,4 +175,10 @@
 ### fix kubeconfig file
   ```bash
   # verify that host and port for kube-apiserver are correct
+  kubectl cluster-info --kubeconfig=/root/super.kubeconfig
+  ...
+  clusters:
+  - cluster:
+      server: https://172.17.0.14:6443
+  ...
   ```
