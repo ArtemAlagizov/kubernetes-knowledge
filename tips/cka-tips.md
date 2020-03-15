@@ -203,6 +203,10 @@
   ```
   cd /etc/kubernetes/manifests
   ```
+* for instance, replace wrong entries in kube-controller-manager.yaml
+  ```
+  sed -i 's/kube-contro1ler-manager/kube-controller-manager/g' kube-controller-manager.yaml
+  ```
 ### upgrade the current version of kubernetes from 1.16 to 1.17.0 exactly using the kubeadm utility. make sure that the upgrade is carried out one node at a time starting with the master node. to minimize downtime, the deployment gold-nginx should be rescheduled on an alternate node before upgrading each node
 * master node
   ```bash
