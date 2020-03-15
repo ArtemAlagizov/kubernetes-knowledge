@@ -106,7 +106,10 @@
   kubectl run --generator=run-pod/v1 busybox --image=busybox --rm -it -- sh
   
   # inside the container
-  wget --spider --timeout=1 np-test-service
+  nc -zvw 2 np-test-service 80
+  
+  # expected output
+  np-test-service (10.110.165.96:80) open
   ```
 ### taint node with key:env_type, value:production and effect:NoSchedule, create pod woth tolerations to run on this node
 * taint node
