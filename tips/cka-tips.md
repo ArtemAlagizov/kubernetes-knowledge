@@ -180,6 +180,9 @@
   # verify that host and port for kube-apiserver are correct
   kubectl cluster-info --kubeconfig=/root/super.kubeconfig
   
+  # check correct port for kube-api
+  kubectl get pod -n kube-system kube-apiserver-master -o yaml
+  
   # update the config file
   ...
   clusters:
