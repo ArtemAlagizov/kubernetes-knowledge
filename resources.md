@@ -5,6 +5,7 @@
 * [list of advanced tutorials on kubernetes](https://techbeacon.com/enterprise-it/47-advanced-tutorials-mastering-kubernetes?utm_content=73574978&utm_medium=social&utm_source=twitter)
 * [troubleshooting kubernetes openai story](https://openai.com/blog/scaling-kubernetes-to-2500-nodes)
 * [kubernetes-ckad-weekly-challenge](https://codeburst.io/kubernetes-ckad-weekly-challenge-7-migrate-a-service-68c7af41c8df)
+* [cka-practical-challenges](https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d)
 
 ### gpu specific articles
 * [installing-a-diy-bare-metal-gpu-cluster-for-kubernetes](https://hackernoon.com/installing-a-diy-bare-metal-gpu-cluster-for-kubernetes-364200254187)
