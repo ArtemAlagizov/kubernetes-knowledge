@@ -240,3 +240,42 @@ CONTAINER_IMAGE:.spec.template.spec.containers[].image,
 READY_REPLICAS:.status.readyReplicas,
 NAMESPACE:.metadata.namespace --sort-by=.metadata.name > /opt/deployment_1_data
 ```
+### expose the hr-web-app as service hr-web-app-service application on port 30082 on the nodes on the cluster. the web application listens on port 8080
+```
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hr-web-app
+  name: hr-web-app-service
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30082
+  selector:
+    app: hr-web-app
+  type: NodePort
+status:
+  loadBalancer: {}
+```
+### create a Persistent Volume with the given specification. 
+* volume Name: pv-analytics
+* storage: 100Mi
+* access modes: ReadWriteMany
+* host Path: /pv/data-analytics
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-analytics
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+  - ReadWriteMany
+  hostPath:
+    path: /pv/data-analytics
+```
