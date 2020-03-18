@@ -287,3 +287,31 @@ spec:
 ```
 kubectl create configmap cm-3392845 --from-literal=DB_NAME=SQL3322 --from-literal=DB_HOST=sql322.mycompany.com --from-literal=DB_PORT=3306
 ```
+### create a new secret named db-secret-xxdf:
+* Secret Name: db-secret-xxdf
+* Secret 1: DB_Host=sql01
+* Secret 2: DB_User=root
+* Secret 3: DB_Password=password123
+```
+kubectl create secret generic  db-secret-xxdf --from-literal=DB_HOST=sql01 --from-literal=DB_USER=root --from-literal=DB_PASSWORD=password123
+```
+### create a Persistent Volume with the given specification 
+* volume name: pv-analytics
+* storage: 100Mi
+* access modes: ReadWriteMany
+* host path: /pv/data-analytics
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-analytics
+spec:
+  hostPath:
+    path: /pv/data-analytics
+  capacity:
+    storage: 100Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+```
