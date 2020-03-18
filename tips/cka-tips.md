@@ -279,3 +279,11 @@ spec:
   hostPath:
     path: /pv/data-analytics
 ```
+### Create a new ConfigMap named cm-3392845. Use the spec: 
+* configName Name: cm-3392845
+* data: DB_NAME=SQL3322
+* data: DB_HOST=sql322.mycompany.com
+* data: DB_PORT=3306
+```
+kubectl create configmap cm-3392845 --from-literal=DB_NAME=SQL3322 --from-literal=DB_HOST=sql322.mycompany.com --from-literal=DB_PORT=3306
+```
