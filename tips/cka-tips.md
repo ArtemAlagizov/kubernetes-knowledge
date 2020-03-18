@@ -279,8 +279,8 @@ spec:
   hostPath:
     path: /pv/data-analytics
 ```
-### Create a new ConfigMap named cm-3392845. Use the spec: 
-* configName Name: cm-3392845
+### create a new ConfigMap named cm-3392845. use the spec: 
+* configMap name: cm-3392845
 * data: DB_NAME=SQL3322
 * data: DB_HOST=sql322.mycompany.com
 * data: DB_PORT=3306
