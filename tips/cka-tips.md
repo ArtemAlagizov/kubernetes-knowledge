@@ -315,3 +315,11 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
 ```
+### get the Common Name (CN) configured on the Kube API Server Certificate
+```
+openssl x509 -in file-path.crt -text -noout
+```
+### sign new certificate by the CA for etcd and configure it to be used by the kube-api server
+```
+openssl x509 -req -in /etc/kubernetes/pki/apiserver-etcd-client.csr -CA /etc/kubernetes/pki/etcd/ca.crt -CAkey /etc/kubernetes/pki/etcd/ca.key -CAcreateserial -out /etc/kubernetes/pki/apiserver-etcd-client.crt
+```
