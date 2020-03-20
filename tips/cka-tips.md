@@ -323,3 +323,17 @@ openssl x509 -in file-path.crt -text -noout
 ```
 openssl x509 -req -in /etc/kubernetes/pki/apiserver-etcd-client.csr -CA /etc/kubernetes/pki/etcd/ca.crt -CAkey /etc/kubernetes/pki/etcd/ca.key -CAcreateserial -out /etc/kubernetes/pki/apiserver-etcd-client.crt
 ```
+### deployment doesn't scale, fix issue
+check:
+* state of control plane components
+  ```
+  kubectl get pod -n kube-system
+  ```
+* if some component is not running
+  ```
+  kubectl logs -n kube-system kube-controller-manager-master
+  ```
+  * possible issues:
+    * wrong volumes mounted
+    * wrong executable name
+      * to solve check /etc/kubernetes/manifests
