@@ -14,3 +14,4 @@
 * [running-gpu-accelerated-kubernetes-workloads-on-p3-and-p2-ec2-instances-with-amazon-eks](https://aws.amazon.com/blogs/compute/running-gpu-accelerated-kubernetes-workloads-on-p3-and-p2-ec2-instances-with-amazon-eks/)
 * [cluster deployment for ML and HPC workloads with nvidia gpu virtualization and vmware pvrdma technologies](https://docs.mellanox.com/m/view-rendered-page.action?abstractPageId=18482697)
 * [auto scaling kubernetes clusters based on gpu metrics](https://www.alibabacloud.com/blog/auto-scaling-kubernetes-clusters-based-on-gpu-metrics_594314)
+* [gpu-sharing-scheduler-extender-now-supports-fine-grained-kubernetes-clusters](https://www.alibabacloud.com/blog/gpu-sharing-scheduler-extender-now-supports-fine-grained-kubernetes-clusters_594926)
