@@ -90,6 +90,10 @@ $ kubectl get deployment kube-d TAB
 |svc	|services|
 
 ### commands
+* get logs from previous instance of the pod
+  ```
+  kubectl logs nginx -p
+  ```
 * add extra columns to the output
   ```
   kubectl get pods -o wide
