@@ -671,6 +671,7 @@
       WantedBy=multi-user.target
       EOF
       ```
+* kube proxy setup
   * configure the Kubernetes Proxy
     ```
     worker-1$ sudo mv kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
