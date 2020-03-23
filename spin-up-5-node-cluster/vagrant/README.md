@@ -252,4 +252,19 @@
     scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig ${instance}:~/
   done
   ```
+### data encryption
+* to store data in etcd in an encrypted way:
+  * generate an encryption key
+    ```
+    ENCRYPTION_KEY= $(head -c 32 /dev/urandom | base64)
+    ```
+  * create encryption-config.yaml
+    ```
+    ```
+  * distribute encryption-config.yaml file to master nodes
+    ```
+    for instance in master-1 master-2; do
+      scp encryption-config.yaml ${instance}:~/
+    done  
+    ```
 ### to be continued
