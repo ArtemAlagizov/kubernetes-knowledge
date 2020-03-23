@@ -278,4 +278,14 @@
       scp encryption-config.yaml ${instance}:~/
     done  
     ```
+### bootstrap etcd cluster
+### bootstrap control plane
+### bootstrap worker nodes
+### tls bootstrap worker nodes
+### configure kubectl for remote access
+### deploy pod networking solution => weave
+### kube api server to kubelet config
+### deploy the dns cluster add-on
+### smoke test
+### e2e test
 ### to be continued
