@@ -348,7 +348,7 @@
     sudo systemctl start etcd
   }
   ```
-* verify that is is running
+* verify that it is running
   ```
   sudo ETCDCTL_API=3 etcdctl member list \
   --endpoints=https://127.0.0.1:2379 \
