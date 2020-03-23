@@ -260,6 +260,17 @@
     ```
   * create encryption-config.yaml
     ```
+    kind: EncryptionConfig
+    apiVersion: v1
+    resources:
+      - resources:
+          - secrets
+        providers:
+          - aescbc:
+              keys:
+                - name: key1
+                  secret: ${ENCRYPTION_KEY}
+          - identity: {}
     ```
   * distribute encryption-config.yaml file to master nodes
     ```
