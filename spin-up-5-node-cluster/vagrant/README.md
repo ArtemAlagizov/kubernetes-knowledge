@@ -542,8 +542,9 @@
 * worker nodes need the following components
   * kubelet => primary “node agent” that runs on each node, that can register the node with the apiserver using one of: the hostname; a flag to override the hostname; or specific logic for a cloud provider
   * kube-proxy => network proxy runs on each node. this reflects services as defined in the Kubernetes API on each node and can do simple TCP, UDP, and SCTP stream forwarding or round robin TCP, UDP, and SCTP forwarding across a set of backends
-* provisioning Kubelet Client Certificates
-  * kubernetes uses a special-purpose authorization mode called Node Authorizer, that specifically authorizes API requests made by kubelets. in order to be authorized by the Node Authorizer, Kubelets must use a credential that identifies them as being in the system:nodes group, with a username of system:node:<nodeName>
+* kubelet setup
+  * provisioning kubelet client certificates
+    * kubernetes uses a special-purpose authorization mode called Node Authorizer, that specifically authorizes API requests made by kubelets. in order to be authorized by the Node Authorizer, Kubelets must use a credential that identifies them as being in the system:nodes group, with a username of system:node:<nodeName>
     * generate a certificate and private key for one worker node
       ```
       master-1$ cat > openssl-worker-1.cnf <<EOF
