@@ -82,6 +82,7 @@
       * that is why recommended minimum is 3 nodes
         * gives fault tolerance of at least 1 node (number of nodes that you can afford to loose while keeping the cluster alive)
   * it is recommended to have odd number of master nodes in a cluster
+    * the reason for that in case of network partitioning => if original amount of nodes was even, amount of nodes in each sub-network can be even and majority in each sub-network might be hard to achieve
 * etcd installation
   ```
   TODO
