@@ -252,3 +252,4 @@
     scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig ${instance}:~/
   done
   ```
+### to be continued
