@@ -1,4 +1,10 @@
 ## spin up 5 node cluster locally [based on [this](https://github.com/mmumshad/kubernetes-the-hard-way)]
+
+* [provision VMs](provision VMs)
+.
+.
+* [deploy-pod-networking-solution--weave](https://github.com/ArtemAlagizov/practical-kubernetes/blob/master/spin-up-5-node-cluster/vagrant/README.md#deploy-pod-networking-solution--weave)
+
 ### setup
 2 masters, 2 workers, 1 loadbalancer in front of the masters
 
@@ -252,7 +258,7 @@
     scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig ${instance}:~/
   done
   ```
-### data encryption
+#### data encryption
 * to store data in etcd in an encrypted way:
   * generate an encryption key
     ```
@@ -278,7 +284,7 @@
       scp encryption-config.yaml ${instance}:~/
     done  
     ```
-### bootstrap etcd cluster
+#### bootstrap etcd cluster
 * download binaries 
   ```
   wget -q --show-progress --https-only --timestamping \
@@ -356,7 +362,7 @@
   --cert=/etc/etcd/etcd-server.crt \
   --key=/etc/etcd/etcd-server.key
   ```
-### bootstrap control plane
+#### bootstrap control plane
 * create folder for config files
   ```
   sudo mkdir -p /etc/kubernetes/config
@@ -508,7 +514,7 @@
   ```
   kubectl get componentstatuses --kubeconfig admin.kubeconfig
   ```
-### bootstrap control plane load balancer
+#### bootstrap control plane load balancer
 * install haproxy
   ```
   sudo apt-get update && sudo apt-get install -y haproxy
@@ -538,7 +544,7 @@
   ```
   curl  https://192.168.5.30:6443/version -k
   ```
-### bootstrap worker nodes
+#### bootstrap worker nodes
 * worker nodes need the following components
   * kubelet => primary “node agent” that runs on each node, that can register the node with the apiserver using one of: the hostname; a flag to override the hostname; or specific logic for a cloud provider
   * kube-proxy => network proxy runs on each node. this reflects services as defined in the Kubernetes API on each node and can do simple TCP, UDP, and SCTP stream forwarding or round robin TCP, UDP, and SCTP forwarding across a set of backends
@@ -716,7 +722,7 @@
   ```
   master-1$ kubectl get nodes --kubeconfig admin.kubeconfig
   ```
-### tls bootstrap worker nodes
+#### tls bootstrap worker nodes
 * tls bootstrap of worker nodes gives
   * nodes can generate certificate key pairs by themselves
   * nodes can generate certificate signing request by themselves
@@ -924,7 +930,7 @@
     ```
     master-1$ kubectl get nodes --kubeconfig admin.kubeconfig
     ```
-### configure kubectl for remote access
+#### configure kubectl for remote access
 * generate a kubeconfig file suitable for authenticating as the admin user
   ```
   {
@@ -950,7 +956,7 @@
   ```
   kubectl get componentstatuses
   ```
-### deploy pod networking solution => weave
+#### deploy pod networking solution => weave
 * download the CNI Plugins required for weave on each of the worker nodes - worker-1 and worker-2
   ```
   wget https://github.com/containernetworking/plugins/releases/download/v0.7.5/cni-plugins-amd64-v0.7.5.tgz
@@ -967,7 +973,7 @@
   ```
   master-1$ kubectl get pods -n kube-system
   ```
-### kube api server to kubelet config
+#### kube api server to kubelet config
 * configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. access to the Kubelet API is required for retrieving metrics, logs, and executing commands in pod
   * create the system:kube-apiserver-to-kubelet ClusterRole with permissions to access the Kubelet API and perform most common tasks associated with managing pods
     ```
@@ -1011,7 +1017,7 @@
         name: kube-apiserver
     EOF
     ```
-### deploy the dns cluster add-on
+#### deploy the dns cluster add-on
 *  DNS add-on which provides DNS based service discovery, backed by CoreDNS, to applications running inside the Kubernetes cluster
   * deploy the coredns cluster add-on  
     ```
@@ -1030,7 +1036,7 @@
       ```
       kubectl exec -ti busybox -- nslookup kubernetes
       ```
-### smoke test
-### e2e test
-### to be continued
+#### smoke test
+#### e2e test
+#### to be continued
 
