@@ -539,6 +539,31 @@
   curl  https://192.168.5.30:6443/version -k
   ```
 ### bootstrap worker nodes
+* worker nodes need the following components
+  * kubelet => primary “node agent” that runs on each node, that can register the node with the apiserver using one of: the hostname; a flag to override the hostname; or specific logic for a cloud provider
+  * kube-proxy => network proxy runs on each node. this reflects services as defined in the Kubernetes API on each node and can do simple TCP, UDP, and SCTP stream forwarding or round robin TCP, UDP, and SCTP forwarding across a set of backends
+* provisioning Kubelet Client Certificates
+  * kubernetes uses a special-purpose authorization mode called Node Authorizer, that specifically authorizes API requests made by kubelets. in order to be authorized by the Node Authorizer, Kubelets must use a credential that identifies them as being in the system:nodes group, with a username of system:node:<nodeName>
+    * generate a certificate and private key for one worker node
+      ```
+      master-1$ cat > openssl-worker-1.cnf <<EOF
+      [req]
+      req_extensions = v3_req
+      distinguished_name = req_distinguished_name
+      [req_distinguished_name]
+      [ v3_req ]
+      basicConstraints = CA:FALSE
+      keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+      subjectAltName = @alt_names
+      [alt_names]
+      DNS.1 = worker-1
+      IP.1 = 192.168.5.21
+      EOF
+
+      openssl genrsa -out worker-1.key 2048
+      openssl req -new -key worker-1.key -subj "/CN=system:node:worker-1/O=system:nodes" -out worker-1.csr -config openssl-worker-1.cnf
+      openssl x509 -req -in worker-1.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out worker-1.crt -extensions v3_req -extfile openssl-worker-1.cnf -days 1000
+      ```
 ### tls bootstrap worker nodes
 ### configure kubectl for remote access
 ### deploy pod networking solution => weave
