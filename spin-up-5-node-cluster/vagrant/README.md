@@ -768,7 +768,7 @@
       sudo mv ca.crt /var/lib/kubernetes/
       ```
   * create the Boostrap Token to be used by Nodes(Kubelets) to invoke Certificate API
-    * for the workers(kubelet) to access the Certificates API, they need to authenticate to the kubernetes api-server first. For this we create a Bootstrap Token to be used by the kubelet. bootstrap Tokens take the form of a 6 character token id followed by 16 character token secret separated by a dot. Eg: abcdef.0123456789abcdef. more formally, they must match the regular expression [a-z0-9]{6}.[a-z0-9]{16}
+    * for the workers(kubelet) to access the Certificates API, they need to authenticate to the kubernetes api-server first. For this we create a Bootstrap Token to be used by the kubelet. bootstrap Tokens take the form of a 6 character token id followed by 16 character token secret separated by a dot. Eg: abcdef.0123456789abcdef. more formally, they must match the regular expression [a-z0-9]{6}.[a-z0-9]{16}. bootstrap Tokens are created as a secret in the kube-system namespace
       ```
       cat > bootstrap-token-07401b.yaml <<EOF
       apiVersion: v1
@@ -924,12 +924,112 @@
     ```
     master-1$ kubectl get nodes --kubeconfig admin.kubeconfig
     ```
-
-Bootstrap Tokens are created as a secret in the kube-system namespace
 ### configure kubectl for remote access
+* generate a kubeconfig file suitable for authenticating as the admin user
+  ```
+  {
+    KUBERNETES_LB_ADDRESS=192.168.5.30
+
+    kubectl config set-cluster kubernetes-the-hard-way \
+      --certificate-authority=ca.crt \
+      --embed-certs=true \
+      --server=https://${KUBERNETES_LB_ADDRESS}:6443
+
+    kubectl config set-credentials admin \
+      --client-certificate=admin.crt \
+      --client-key=admin.key
+
+    kubectl config set-context kubernetes-the-hard-way \
+      --cluster=kubernetes-the-hard-way \
+      --user=admin
+
+    kubectl config use-context kubernetes-the-hard-way
+  }
+  ```
+* verify
+  ```
+  kubectl get componentstatuses
+  ```
 ### deploy pod networking solution => weave
+* download the CNI Plugins required for weave on each of the worker nodes - worker-1 and worker-2
+  ```
+  wget https://github.com/containernetworking/plugins/releases/download/v0.7.5/cni-plugins-amd64-v0.7.5.tgz
+  ```
+* extract it to /opt/cni/bin directory
+  ```
+  sudo tar -xzvf cni-plugins-amd64-v0.7.5.tgz --directory /opt/cni/bin/
+  ```
+* deploy Weave Network (on master node)
+  ```
+  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  ```
+* verify
+  ```
+  master-1$ kubectl get pods -n kube-system
+  ```
 ### kube api server to kubelet config
+* configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. access to the Kubelet API is required for retrieving metrics, logs, and executing commands in pod
+  * create the system:kube-apiserver-to-kubelet ClusterRole with permissions to access the Kubelet API and perform most common tasks associated with managing pods
+    ```
+    cat <<EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
+    apiVersion: rbac.authorization.k8s.io/v1beta1
+    kind: ClusterRole
+    metadata:
+      annotations:
+        rbac.authorization.kubernetes.io/autoupdate: "true"
+      labels:
+        kubernetes.io/bootstrapping: rbac-defaults
+      name: system:kube-apiserver-to-kubelet
+    rules:
+      - apiGroups:
+          - ""
+        resources:
+          - nodes/proxy
+          - nodes/stats
+          - nodes/log
+          - nodes/spec
+          - nodes/metrics
+        verbs:
+          - "*"
+    EOF
+    ```
+  * bind the system:kube-apiserver-to-kubelet ClusterRole to the kubernetes user
+    ```
+    cat <<EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
+    apiVersion: rbac.authorization.k8s.io/v1beta1
+    kind: ClusterRoleBinding
+    metadata:
+      name: system:kube-apiserver
+      namespace: ""
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: system:kube-apiserver-to-kubelet
+    subjects:
+      - apiGroup: rbac.authorization.k8s.io
+        kind: User
+        name: kube-apiserver
+    EOF
+    ```
 ### deploy the dns cluster add-on
+*  DNS add-on which provides DNS based service discovery, backed by CoreDNS, to applications running inside the Kubernetes cluster
+  * deploy the coredns cluster add-on  
+    ```
+    kubectl apply -f https://raw.githubusercontent.com/mmumshad/kubernetes-the-hard-way/master/deployments/coredns.yaml
+    ```
+  * verify
+    * create busybox deployment
+      ```
+      kubectl run --generator=run-pod/v1  busybox --image=busybox:1.28 --command -- sleep 3600   
+      ```
+    * list the pod created by the busybox deployment
+      ```
+      kubectl get pods -l run=busybox
+      ```
+    * execute a DNS lookup for the kubernetes service inside the busybox pod
+      ```
+      kubectl exec -ti busybox -- nslookup kubernetes
+      ```
 ### smoke test
 ### e2e test
 ### to be continued
