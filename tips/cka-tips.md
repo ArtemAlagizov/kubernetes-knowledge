@@ -111,7 +111,7 @@
   # expected output
   np-test-service (10.110.165.96:80) open
   ```
-### taint node with key:env_type, value:production and effect:NoSchedule, create pod woth tolerations to run on this node
+### taint node with key:env_type, value:production and effect:NoSchedule, create pod with tolerations to run on this node
 * taint node
   ```
   kubectl taint node node01 env_type=production:NoSchedule
@@ -339,6 +339,7 @@ check:
       * to solve check /etc/kubernetes/manifests
 ### a new deployment called alpha-mysql has been deployed in the alpha namespace. however, the pods are not running. troubleshoot and fix the issue. the deployment should make use of the persistent volume alpha-pv to be mounted at /var/lib/mysql and should use the environment variable MYSQL_ALLOW_EMPTY_PASSWORD=1 to make use of an empty root password. _important: do not alter the persistent volume_
 
+TODO
 
 ### Create a pod called secret-1401 in the admin1401 namespace using the busybox image. The container within the pod should be called secret-admin and should sleep for 4800 seconds. The container should mount a read-only secret volume called secret-volume at the path /etc/secret-volume. The secret being mounted has already been created for you and is called dotfile-secret.
 ```
