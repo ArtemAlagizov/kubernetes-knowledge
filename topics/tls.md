@@ -69,7 +69,7 @@
     ```
   * sign certificates with CA, which makes it a vlid certifiate within the cluster
     ```
-    openssl x509 -req -in -CA admin.csr -CAKey ca.key ca.key -out admin.crt
+    openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out admin.crt -days 1000
      ```
 * in the same way create certificate and key pair for contol plane components
   * /CN=system-kube-scheduler
