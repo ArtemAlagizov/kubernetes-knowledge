@@ -369,3 +369,8 @@ spec:
   restartPolicy: Always
 status: {}
 ```
+### fix permissions issue in a cluster, given worng config file is used
+* use config file provided by kubeadm
+  ```
+  kubectl config --kubeconfig=/etc/kubernetes/admin.conf use-context kubernetes-admin@kubernetes
+  ```
