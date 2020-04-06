@@ -16,3 +16,4 @@
 * [auto scaling kubernetes clusters based on gpu metrics](https://www.alibabacloud.com/blog/auto-scaling-kubernetes-clusters-based-on-gpu-metrics_594314)
 * [gpu-sharing-scheduler-extender-now-supports-fine-grained-kubernetes-clusters](https://www.alibabacloud.com/blog/gpu-sharing-scheduler-extender-now-supports-fine-grained-kubernetes-clusters_594926)
 * [kubernetes-gpu-guide](https://github.com/Langhalsdino/Kubernetes-GPU-Guide)
+* [autoscaling-deep-learning-training-kubernetes](https://devblogs.microsoft.com/cse/2017/11/21/autoscaling-deep-learning-training-kubernetes/)
