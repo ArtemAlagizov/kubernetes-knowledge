@@ -8,7 +8,7 @@
 * [cka-practical-challenges](https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d)
 * [on-premise-kubernetes-clusters](https://medium.com/swlh/on-premise-kubernetes-clusters-b36660ca6914)
 
-### gpu specific articles
+### gpu specific
 * [installing-a-diy-bare-metal-gpu-cluster-for-kubernetes](https://hackernoon.com/installing-a-diy-bare-metal-gpu-cluster-for-kubernetes-364200254187)
 * [gpus-kubernetes-for-deep-learning-part](https://hackernoon.com/gpus-kubernetes-for-deep-learning-part-1-3-d8eebe0dd6fe)
 * [nvidia-gpu-operator-simplifying-gpu-management-in-kubernetes](https://devblogs.nvidia.com/nvidia-gpu-operator-simplifying-gpu-management-in-kubernetes/)
@@ -18,3 +18,4 @@
 * [gpu-sharing-scheduler-extender-now-supports-fine-grained-kubernetes-clusters](https://www.alibabacloud.com/blog/gpu-sharing-scheduler-extender-now-supports-fine-grained-kubernetes-clusters_594926)
 * [kubernetes-gpu-guide](https://github.com/Langhalsdino/Kubernetes-GPU-Guide)
 * [autoscaling-deep-learning-training-kubernetes](https://devblogs.microsoft.com/cse/2017/11/21/autoscaling-deep-learning-training-kubernetes/)
+* [ngc-aws-setup-guide/launching-vm-instance-from-console](https://docs.nvidia.com/ngc/ngc-aws-setup-guide/launching-vm-instance-from-console.html)
