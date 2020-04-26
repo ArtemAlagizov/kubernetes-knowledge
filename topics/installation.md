@@ -49,7 +49,7 @@
       * scheduler follows the same approach
 * etcd
   * can be part of master node (stacked control plane topology) (eaasier to manage/setup)
-  * can be ran on a seprate servers (external etcd topology) (more reliable)
+  * can be ran on a separate servers (external etcd topology) (more reliable)
     * kube-api server accepts list of etcd servers
       ```
       kube-apiserver --etcd-servers=https://10.240.0.10:2379,https://10.40.0.11:2379
@@ -68,6 +68,8 @@
     * questions
        * what happens if the old leader comes back online
          * leaders can step down if there is a better leader present (majority votes)
+           * voting is done by comparing logs at candidate log and voter log
+             * if voter log is more up-to-date the request is denied, otherwise approved
          * when coming online node is in the "follower" state
        * what happens with network partition
          * each network will elect leader
