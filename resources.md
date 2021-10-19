@@ -7,6 +7,7 @@
 * [kubernetes-ckad-weekly-challenge](https://codeburst.io/kubernetes-ckad-weekly-challenge-7-migrate-a-service-68c7af41c8df)
 * [cka-practical-challenges](https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d)
 * [on-premise-kubernetes-clusters](https://medium.com/swlh/on-premise-kubernetes-clusters-b36660ca6914)
+* [bare-metal-with-haproxy](https://thebsdbox.co.uk/2020/01/02/Designing-Building-HA-bare-metal-Kubernetes-cluster/)
 
 ### gpu specific
 * [installing-a-diy-bare-metal-gpu-cluster-for-kubernetes](https://hackernoon.com/installing-a-diy-bare-metal-gpu-cluster-for-kubernetes-364200254187)
